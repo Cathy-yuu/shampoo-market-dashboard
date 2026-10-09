@@ -6,7 +6,7 @@
   <meta name="description" content="洗护市场与竞品观察，整理公开资料、蝉妈妈导出和罗盘·策略月度榜单。">
   <title>洗护市场&amp;竞品看板</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230d2338'/%3E%3Cpath d='M12 43V20h8v23m9 0V30h8v13m9 0V12h8v31' stroke='%2347d2ad' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=c26e5d50">
+  <link rel="stylesheet" href="styles.css?v=486c7830">
 </head>
 <body>
   <div class="app-shell">
@@ -32,11 +32,11 @@
       <header class="topbar"><div class="breadcrumb">抖音市场 <span>/</span> 洗护细分类目</div><div class="top-meta">资料整理于 2026.10.09 <span class="version">V15</span></div></header>
       <div class="content">
         <section class="page-intro" id="overview">
-          <div><div class="eyebrow">市场与竞品 · 分类观察</div><h1>洗护市场&amp;竞品看板</h1><p>罗盘市场榜单可切换洗发水、洗发皂、头皮护理、护发素发膜和护发精油；其余专题沿用原洗发水样本。不同来源的指数、销量区间与金额分开展示。</p></div>
+          <div><div class="eyebrow">市场与竞品 · 分类观察</div><h1>洗护市场&amp;竞品看板</h1><p>历史趋势、年度生态与罗盘市场榜单可切换细分类目；其他专题沿用原洗发水样本。不同来源的指数、销量区间与金额分开展示。</p></div>
           <div class="period-card"><span>最长观察窗口</span><strong>370 天</strong><small>2025.10.01 — 2026.10.05</small></div>
         </section>
 
-        <div class="scope-banner"><span class="scope-icon">i</span><span><strong>先看口径：</strong>年度 PDF 为“洗发水”关键词前 2,000 商品的热度样本，含儿童和套装；下方近 30 天榜单按标题中的儿童、婴幼儿及青少年词初筛。两者均不能代表成人洗发水全市场 GMV。</span></div>
+        <div class="scope-banner"><span class="scope-icon">i</span><span><strong>先看口径：</strong>年度生态使用蝉妈妈不同关键词的商品热度样本，可能包含儿童、套装或跨类目商品；近 30 天洗发水榜单另按标题中的儿童、婴幼儿及青少年词初筛。两类样本均不能代表细分类目全市场 GMV。</span></div>
 
         <section class="section" id="history-2025" aria-labelledby="history-2025-title">
           <div class="section-head"><div><span class="eyebrow">01 / 历史趋势</span><h2 id="history-2025-title">市场规模与品牌历史参考</h2></div><span class="source-pill">公开报告 · 2025—2026</span></div>
@@ -75,7 +75,9 @@
         </section>
 
         <section class="section" id="annual" aria-labelledby="annual-title">
-          <div class="section-head"><div><span class="eyebrow">02 / 年度生态</span><h2 id="annual-title">规模结构与经营方式</h2></div><span class="source-pill">蝉妈妈热度分析 · 近 366 天</span></div>
+          <div class="section-head"><div><span class="eyebrow">02 / 年度生态</span><h2 id="annual-title">规模结构与经营方式</h2></div><span class="source-pill" id="annual-source-pill">蝉妈妈热度分析 · 近一年</span></div>
+          <div id="annual-category-filters" class="public-category-filters" role="group" aria-label="筛选年度生态细分类目"></div>
+          <div class="scope-banner annual-category-note" id="annual-category-note"></div>
           <div class="kpi-grid">
             <article class="kpi"><span>动销商品</span><strong id="moving-products">—</strong><small>关键词样本 · 前 2,000 商品</small></article>
             <article class="kpi"><span>动销店铺</span><strong id="shops">—</strong><small>同一年度样本</small></article>
@@ -83,9 +85,10 @@
             <article class="kpi accent"><span>品牌 TOP 5 集中度</span><strong id="brand-concentration">—</strong><small>PDF 报告展示值</small></article>
           </div>
           <div class="two-col">
-            <article class="panel"><div class="panel-head"><div><h3>成交渠道构成</h3><p>年度样本 GMV 占比，三个渠道合计 100%</p></div></div><div class="channel-graphic"><div class="channel-bar" id="channel-bar"></div><div class="channel-legend" id="channel-legend"></div></div><div class="panel-foot">直播是主要成交渠道，商品卡贡献超过两成。渠道占比只适用于该关键词样本。</div></article>
+            <article class="panel"><div class="panel-head"><div><h3>成交渠道构成</h3><p>年度样本 GMV 占比，三个渠道合计 100%</p></div></div><div class="channel-graphic"><div class="channel-bar" id="channel-bar"></div><div class="channel-legend" id="channel-legend"></div></div><div class="panel-foot" id="annual-channel-foot"></div></article>
             <article class="panel"><div class="panel-head"><div><h3>动销商品价格带</h3><p>商品数，不是 GMV 或成交价分布</p></div></div><div class="bar-list" id="price-bands"></div></article>
           </div>
+          <article class="panel annual-category-insight"><span class="eyebrow">样本观察</span><p id="annual-category-insight"></p></article>
         </section>
 
         <section class="section" id="monthly" aria-labelledby="monthly-title">
@@ -208,7 +211,7 @@
         <section class="section" id="sources" aria-labelledby="sources-title">
           <div class="section-head"><div><span class="eyebrow">11 / 数据口径</span><h2 id="sources-title">数据口径</h2></div></div>
           <div class="provenance"><h3>来源与限制</h3><ul>
-            <li><strong>年度：</strong>洗发水热度分析 PDF（原始文件未公开），2025.10.05–2026.10.05，关键词“洗发水”，前 2,000 商品。</li>
+            <li><strong>年度生态：</strong>洗发水热度分析 PDF（原始文件未公开），2025.10.05–2026.10.05；另有洗发皂（原始文件未公开）、头皮护理精华（原始文件未公开）、护发素发膜（原始文件未公开）、护发精油（原始文件未公开）热度分析 PDF，均为 2025.10.08–2026.10.08。五份报告按各自关键词筛选前 2,000 商品，属于热度样本。</li>
             <li><strong>近一年带货趋势：</strong>飞瓜“洗发”热度导出 2025.10.01–2026.10.05，370 个连续自然日。367 天销售额封顶为“1000万+”，不可计算精确月 GMV；展示销售额下限、销量区间及每日活动数的逐月合计。</li>
             <li><strong>近一年带货商品：</strong>飞瓜“洗发”带货商品前 2,000 行，销售额及各渠道金额均为区间；功效词销售额下限仅依据榜内商品，标题排除儿童词。商品列表不是成人洗发水全量。</li>
             <li><strong>品牌分类：</strong>用户提供 82 个品牌分类表，已与罗盘 4—9 月品牌和商品榜核对出现次数及月份；原表白牌为观察标签，未逐一验证商标及经营主体，故在品牌分析中标“白牌待核”。</li>
@@ -225,7 +228,8 @@
   </div>
   <script src="data.js?v=52a454cb"></script>
   <script src="compass_category_data.js?v=8a6927f8"></script>
-  <script src="app.js?v=f31ceb72"></script>
+  <script src="annual_ecology_data.js?v=874e9ee3"></script>
+  <script src="app.js?v=2de0ce5b"></script>
   <script src="public_category_app.js?v=c86ffe5f"></script>
   <script src="compass_app.js?v=2af919e1"></script>
   <script src="positioning_data.js?v=fa5715b2"></script>

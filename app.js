@@ -20,14 +20,36 @@
     if ($(`${prefix}-page`)) set(`${prefix}-page`, `第 ${page + 1} / ${pages} 页 · 共 ${total} 条`);
   }
 
-  set('moving-products', nf.format(data.annual.movingProducts));
-  set('shops', nf.format(data.annual.shops));
-  set('brands', nf.format(data.annual.brands));
-  set('brand-concentration', data.annual.top5Concentration.brands + '%');
   const colors = {直播:'#0b897d',短视频:'#53b5ae',商品卡:'#accfdd'};
-  $('channel-bar').innerHTML = Object.entries(data.annual.gmvChannelShare).map(([name, value]) => `<span class="channel-segment" title="${name} ${value}%" style="width:${value}%;background:${colors[name]}"></span>`).join('');
-  $('channel-legend').innerHTML = Object.entries(data.annual.gmvChannelShare).map(([name, value]) => `<span class="legend-item"><i class="swatch" style="background:${colors[name]}"></i>${name}<strong>${value}%</strong></span>`).join('');
-  bars('price-bands', data.annual.priceBandProducts.map(x => [x.band, x.count]), Math.max(...data.annual.priceBandProducts.map(x=>x.count)), '商品数');
+  const annualCategories = [
+    ['shampoo','洗发水'],['soap','洗发皂'],['scalp','头皮护理'],['conditioner_mask','护发素发膜'],['oil','护发精油']
+  ];
+  const annualReports = window.ANNUAL_ECOLOGY_DATA || {};
+  function renderAnnualCategory(id) {
+    const isShampoo = id === 'shampoo';
+    const report = isShampoo ? {
+      name:'洗发水', keyword:'洗发水', category:'全部类目', period:'2025.10.05—2026.10.05',
+      movingProducts:data.annual.movingProducts, shops:data.annual.shops, brands:data.annual.brands,
+      top5BrandShare:data.annual.top5Concentration.brands, gmvChannelShare:data.annual.gmvChannelShare,
+      priceBandProducts:data.annual.priceBandProducts.map(x => [x.band,x.count]),
+      insight:'50—100 元商品 825 款，是商品数最多的价格带；TOP5 品牌集中度 19.99%，在五个关键词样本中相对分散。该样本含儿童洗发水和套装。'
+    } : annualReports[id];
+    if (!report) return;
+    $('annual-category-filters').innerHTML = annualCategories.map(([key,name]) => `<button type="button" data-id="${key}" aria-pressed="${key===id}">${name}</button>`).join('');
+    $('annual-category-filters').querySelectorAll('button').forEach(button => button.addEventListener('click', () => renderAnnualCategory(button.dataset.id)));
+    set('annual-source-pill', `蝉妈妈 · ${report.period}`);
+    $('annual-category-note').innerHTML = `<span class="scope-icon">i</span><span><strong>${esc(report.name)} · 口径：</strong>关键词“${esc(report.keyword)}”，PDF 所属品类“${esc(report.category)}”，${esc(report.period)}。平台为蝉妈妈商品热度导出，PDF 未单列其他电商平台；仅统计榜内商品，不代表全市场。销售额显示“1000w+”阈值，不能作为精确 GMV。</span>`;
+    set('moving-products', nf.format(report.movingProducts));
+    set('shops', nf.format(report.shops));
+    set('brands', nf.format(report.brands));
+    set('brand-concentration', report.top5BrandShare.toFixed(2) + '%');
+    $('channel-bar').innerHTML = Object.entries(report.gmvChannelShare).map(([name, value]) => `<span class="channel-segment" title="${name} ${value}%" style="width:${value}%;background:${colors[name]}"></span>`).join('');
+    $('channel-legend').innerHTML = Object.entries(report.gmvChannelShare).map(([name, value]) => `<span class="legend-item"><i class="swatch" style="background:${colors[name]}"></i>${name}<strong>${value.toFixed(2)}%</strong></span>`).join('');
+    set('annual-channel-foot', `渠道占比仅适用于“${report.keyword}”关键词热度样本；各渠道金额显示为阈值，百分比采用 PDF 报告展示值。`);
+    bars('price-bands', report.priceBandProducts, Math.max(...report.priceBandProducts.map(x=>x[1])), '商品数');
+    set('annual-category-insight', report.insight + (report.audienceFemaleShare != null ? ` 报告显示女性受众占 ${report.audienceFemaleShare.toFixed(2)}%。` : ''));
+  }
+  renderAnnualCategory('shampoo');
   if (data.monthly.rows.length) {
     $('monthly-empty').hidden = true;
     $('monthly-content').hidden = false;
