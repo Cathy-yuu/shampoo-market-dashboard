@@ -80,6 +80,14 @@
 .compass-product-link:hover{text-decoration:underline}
 @media(max-width:900px){.export-brand-deltas,.export-brand-sort-results{grid-template-columns:1fr}}
 
+/* Monthly Compass category selection */
+.compass-category-bar{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;background:#e6f3ef;border:1px solid #b9dfd3;border-radius:10px;padding:13px 16px}
+.compass-category-bar label{font-weight:800;color:#0a6e61;font-size:14px}
+.compass-category-bar select{min-width:210px;max-width:100%;height:39px;background:#fff;border:1px solid #80c5b1;border-radius:7px;color:#173b46;padding:0 11px;font-weight:700}
+.compass-category-bar span{color:#446e68;font-size:13px}
+#compass>.scope-banner{margin-top:12px}
+@media(max-width:600px){.compass-category-bar{align-items:stretch}.compass-category-bar label,.compass-category-bar select,.compass-category-bar span{width:100%}}
+
 /* Positioning dimensions and matching Compass records */
 .positioning-map-panel .panel-head{align-items:flex-start;gap:16px}
 .positioning-controls{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end}
