@@ -110,49 +110,74 @@
     {label:'带货直播',values:annualMonths.map(row=>row.lives),color:'#138f7b'},
     {label:'带货视频',values:annualMonths.map(row=>row.videos),color:'#426899'},
   ]);
-  const creatorMix = data.creatorMix || {rows:[],period:'',source:'',status:'waiting',issues:[],adjustments:[]};
-  const mixCount = group => creatorMix.rows.filter(row => row.relation === group).length;
-  const cardMixRows = creatorMix.rows.filter(row => row.cardLeading).sort((a,b)=>b.cardShare-a.cardShare);
-  if (creatorMix.rows.length) {
-    set('creator-mix-status',`已核对 ${creatorMix.rows.length} / ${creatorMix.inputCount} 个填报品牌 · ${creatorMix.scope} · 统计周期：${creatorMix.period} · 来源：${creatorMix.source}。自营/达人关系按两者可归属部分计算，商品卡单列。`);
-  } else {
-    set('creator-mix-status','暂无可核实的品牌自营、达人和商品卡占比；现有飞瓜及罗盘渠道数据不能替代这一拆分。');
-  }
-  $('creator-mix-kpis').innerHTML = [
-    ['自营为主',mixCount('自营为主'),'自营占可归属部分 ≥60%'],
-    ['达人为主',mixCount('达人为主'),'达人占可归属部分 ≥60%'],
-    ['自营达人均衡',mixCount('自营达人均衡'),'双方均低于 60%'],
-    ['商品卡份额最高',cardMixRows.length,'与左侧三组可重叠'],
-  ].map(([label,value,note])=>`<div><span>${esc(label)}</span><strong>${value} 个</strong><small>${esc(note)}</small></div>`).join('');
-  [['自营为主','self-mix'],['达人为主','creator-mix'],['自营达人均衡','balanced-mix']].forEach(([group,prefix])=>{
-    const rows = creatorMix.rows.filter(row=>row.relation === group).sort((a,b)=>
+  const creatorMixCategories = {
+    shampoo: {label:'洗发水', data:data.creatorMix},
+    soap: {label:'洗发皂', data:window.CREATOR_MIX_SOAP},
+  };
+  const shampooMixChart = $('creator-mix-chart').innerHTML;
+  let activeMix = creatorMixCategories.shampoo.data;
+  const mixPages = {'self-mix':0,'creator-mix':0,'balanced-mix':0,'card-mix':0};
+  function groupedMixRows(group) {
+    return activeMix.rows.filter(row=>row.relation === group).sort((a,b)=>
       (group === '达人为主' ? b.creatorRelative-a.creatorRelative : b.selfRelative-a.selfRelative) || a.brand.localeCompare(b.brand,'zh-CN'));
-    let page = 0;
-    function render() {
-      $(`${prefix}-brands`).innerHTML = rows.slice(page*5,(page+1)*5).map((row,i)=>{
-        const relative = group === '达人为主' ? `达人在可归属部分 ${(row.creatorRelative*100).toFixed(1)}%` : `自营在可归属部分 ${(row.selfRelative*100).toFixed(1)}%`;
-        return `<div class="channel-leader"><b>${String(page*5+i+1).padStart(2,'0')}</b><span><strong>${esc(row.brand)}</strong><small>自营 ${(row.selfShare*100).toFixed(1)}% · 达人 ${(row.creatorShare*100).toFixed(1)}% · 商品卡 ${(row.cardShare*100).toFixed(1)}%<br>${relative}</small></span></div>`;
-      }).join('') || '<p class="mix-empty">暂无通过核对的品牌</p>';
-      updatePager(prefix,page,rows.length,5);
-    }
-    $(`${prefix}-prev`).addEventListener('click',()=>{page--;render();});
-    $(`${prefix}-next`).addEventListener('click',()=>{page++;render();});
-    render();
-  });
-  let cardMixPage = 0;
+  }
+  function renderMixList(group,prefix) {
+    const rows = groupedMixRows(group), page = mixPages[prefix];
+    $(`${prefix}-brands`).innerHTML = rows.slice(page*5,(page+1)*5).map((row,i)=>{
+      const relative = group === '达人为主' ? `达人在可归属部分 ${(row.creatorRelative*100).toFixed(1)}%` : `自营在可归属部分 ${(row.selfRelative*100).toFixed(1)}%`;
+      return `<div class="channel-leader"><b>${String(page*5+i+1).padStart(2,'0')}</b><span><strong>${esc(row.brand)}</strong><small>自营 ${(row.selfShare*100).toFixed(1)}% · 达人 ${(row.creatorShare*100).toFixed(1)}% · 商品卡 ${(row.cardShare*100).toFixed(1)}%<br>${relative}</small></span></div>`;
+    }).join('') || '<p class="mix-empty">暂无通过核对的品牌</p>';
+    updatePager(prefix,page,rows.length,5);
+  }
+  function cardMixRows() { return activeMix.rows.filter(row=>row.cardLeading).sort((a,b)=>b.cardShare-a.cardShare); }
   function renderCardMix() {
-    $('card-mix-brands').innerHTML = cardMixRows.slice(cardMixPage*PAGE_SIZE,(cardMixPage+1)*PAGE_SIZE).map((row,i)=>
-      `<div class="channel-leader"><b>${String(cardMixPage*PAGE_SIZE+i+1).padStart(2,'0')}</b><span><strong>${esc(row.brand)}</strong><small>商品卡 ${(row.cardShare*100).toFixed(1)}% · 自营 ${(row.selfShare*100).toFixed(1)}% · 达人 ${(row.creatorShare*100).toFixed(1)}%</small></span></div>`
+    const rows = cardMixRows(), page = mixPages['card-mix'];
+    $('card-mix-brands').innerHTML = rows.slice(page*PAGE_SIZE,(page+1)*PAGE_SIZE).map((row,i)=>
+      `<div class="channel-leader"><b>${String(page*PAGE_SIZE+i+1).padStart(2,'0')}</b><span><strong>${esc(row.brand)}</strong><small>商品卡 ${(row.cardShare*100).toFixed(1)}% · 自营 ${(row.selfShare*100).toFixed(1)}% · 达人 ${(row.creatorShare*100).toFixed(1)}%</small></span></div>`
     ).join('') || '<p class="mix-empty">暂无通过核对的品牌</p>';
-    updatePager('card-mix',cardMixPage,cardMixRows.length);
+    updatePager('card-mix',page,rows.length);
   }
-  $('card-mix-prev').addEventListener('click',()=>{cardMixPage--;renderCardMix();});
-  $('card-mix-next').addEventListener('click',()=>{cardMixPage++;renderCardMix();});
-  renderCardMix();
-  if (creatorMix.rows.length) {
-    const issues = creatorMix.issues.length ? `未计入：${creatorMix.issues.map(row=>`${row.brand}（${row.reason}）`).join('；')}。` : '所有填报行均通过核对。';
-    $('creator-mix-audit').textContent = `口径：${creatorMix.method} ${issues} 已按用户确认修正 ${creatorMix.adjustments.length} 处录入值；源文件保留原样。统计周期和数据平台未注明，不能与其他期间的金额或指数直接比较。`;
+  [['自营为主','self-mix'],['达人为主','creator-mix'],['自营达人均衡','balanced-mix']].forEach(([group,prefix])=>{
+    $(`${prefix}-prev`).addEventListener('click',()=>{mixPages[prefix]--;renderMixList(group,prefix);});
+    $(`${prefix}-next`).addEventListener('click',()=>{mixPages[prefix]++;renderMixList(group,prefix);});
+  });
+  $('card-mix-prev').addEventListener('click',()=>{mixPages['card-mix']--;renderCardMix();});
+  $('card-mix-next').addEventListener('click',()=>{mixPages['card-mix']++;renderCardMix();});
+  function renderCreatorMixCategory(category) {
+    const selected = creatorMixCategories[category];
+    activeMix = selected.data || {rows:[],inputCount:0,issues:[],adjustments:[],period:'未提供',source:'未提供',method:''};
+    Object.keys(mixPages).forEach(key=>{mixPages[key]=0;});
+    $('creator-mix-category-filters').innerHTML = Object.entries(creatorMixCategories).map(([key,item])=>
+      `<button type="button" data-id="${key}" aria-pressed="${key===category}">${item.label}</button>`).join('');
+    $('creator-mix-category-filters').querySelectorAll('button').forEach(button=>
+      button.addEventListener('click',()=>renderCreatorMixCategory(button.dataset.id)));
+    if (activeMix.rows.length) {
+      set('creator-mix-status',`已核对 ${activeMix.rows.length} / ${activeMix.inputCount} 个填报品牌 · ${activeMix.scope} · 统计周期：${activeMix.period} · 来源：${activeMix.source}。自营/达人关系按两者可归属部分计算，商品卡单列。`);
+    } else {
+      set('creator-mix-status',`${selected.label}暂无可核实的品牌自营、达人和商品卡占比。`);
+    }
+    const mixCount = group=>activeMix.rows.filter(row=>row.relation===group).length;
+    $('creator-mix-kpis').innerHTML = [
+      ['自营为主',mixCount('自营为主'),'自营占可归属部分 ≥60%'],
+      ['达人为主',mixCount('达人为主'),'达人占可归属部分 ≥60%'],
+      ['自营达人均衡',mixCount('自营达人均衡'),'双方均低于 60%'],
+      ['商品卡份额最高',cardMixRows().length,'与左侧三组可重叠'],
+    ].map(([label,value,note])=>`<div><span>${esc(label)}</span><strong>${value} 个</strong><small>${esc(note)}</small></div>`).join('');
+    set('creator-mix-chart-title',category === 'shampoo' ? '洗发水 · 15 个品牌成交渠道结构' : `${activeMix.rows.length} 个${selected.label}品牌成交渠道结构`);
+    if (category === 'shampoo') {
+      $('creator-mix-chart').innerHTML = shampooMixChart;
+    } else {
+      $('creator-mix-chart').innerHTML = `<div class="channel-stack-legend"><span><i></i>自营</span><span><i></i>达人</span><span><i></i>商品卡</span></div>` +
+        [...activeMix.rows].sort((a,b)=>b.selfShare-a.selfShare).map(row=>
+          `<div class="channel-stack-row"><strong title="${esc(row.brand)}">${esc(row.brand)}</strong><div class="channel-stack-track" role="img" aria-label="${esc(row.brand)}：自营 ${(row.selfShare*100).toFixed(1)}%，达人 ${(row.creatorShare*100).toFixed(1)}%，商品卡 ${(row.cardShare*100).toFixed(1)}%"><span style="width:${(row.selfShare*100).toFixed(2)}%"></span><span style="width:${(row.creatorShare*100).toFixed(2)}%"></span><span style="width:${(row.cardShare*100).toFixed(2)}%"></span></div></div>`).join('');
+    }
+    set('creator-mix-chart-caption',`来源：${activeMix.source}。统计周期：${activeMix.period}；原表未注明数据平台，不能解释为近 365 天份额。${category === 'shampoo' ? '图展示 15 个品牌，下方分组覆盖全部通过校验的品牌。' : '图仅展示通过占比合计校验的品牌。'}`);
+    [['自营为主','self-mix'],['达人为主','creator-mix'],['自营达人均衡','balanced-mix']].forEach(([group,prefix])=>renderMixList(group,prefix));
+    renderCardMix();
+    const issues = activeMix.issues.length ? `未计入：${activeMix.issues.map(row=>`${row.brand}（${row.reason}）`).join('；')}。` : '所有填报行均通过核对。';
+    $('creator-mix-audit').textContent = `口径：${activeMix.method} ${issues} 已按用户确认修正 ${activeMix.adjustments.length} 处录入值；源文件保留原样。统计周期和数据平台未注明，不能与其他期间的金额或指数直接比较。`;
   }
+  renderCreatorMixCategory('shampoo');
   const publicBrands = data.publicMarket.brands2025;
   const concentration = (count) => publicBrands.slice(0,count).reduce((sum, row) => sum + row[1], 0) / data.publicMarket.douyinShampoo2025Yi * 100;
   $('public-concentration').innerHTML = [5,10,20].map(count => `<div><span>TOP ${count} 品牌集中度</span><strong>${concentration(count).toFixed(1)}%</strong><small>按报告销售额 ÷ 108.99 亿元计算</small></div>`).join('');

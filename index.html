@@ -6,7 +6,7 @@
   <meta name="description" content="洗护市场与竞品观察，整理公开资料、蝉妈妈导出和罗盘·策略月度榜单。">
   <title>洗护市场&amp;竞品看板</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230d2338'/%3E%3Cpath d='M12 43V20h8v23m9 0V30h8v13m9 0V12h8v31' stroke='%2347d2ad' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=486c7830">
+  <link rel="stylesheet" href="styles.css?v=99f7221a">
 </head>
 <body>
   <div class="app-shell">
@@ -138,9 +138,10 @@
 
         <section class="section" id="client-relations" aria-labelledby="client-relations-title">
           <div class="section-head"><div><span class="eyebrow">05 / 营销渠道分析</span><h2 id="client-relations-title">自营、达人与商品卡</h2></div><span class="source-pill">用户补充的品牌成交占比</span></div>
+          <div id="creator-mix-category-filters" class="public-category-filters" role="group" aria-label="筛选营销渠道分析类目"></div>
           <div class="scope-banner"><span class="scope-icon">i</span><span id="creator-mix-status">正在核对品牌占比。</span></div>
           <div id="creator-mix-kpis" class="export-kpis"></div>
-          <figure class="panel channel-mix-chart"><div class="panel-head"><div><h3>15 个品牌成交渠道结构</h3><p>自营、达人与商品卡占比；按自营占比由高到低排列</p></div></div><img src="channel-analysis.png" alt="15 个品牌的自营、达人与商品卡成交占比横向堆叠图" width="1800" height="960"><figcaption>来源：用户补充的品牌成交占比表。原表未填写统计周期与数据平台，不能解释为近 365 天份额。</figcaption></figure>
+          <figure class="panel channel-mix-chart"><div class="panel-head"><div><h3 id="creator-mix-chart-title">15 个品牌成交渠道结构</h3><p>自营、达人与商品卡占比；按自营占比由高到低排列</p></div></div><div id="creator-mix-chart"><img src="channel-analysis.png" alt="15 个品牌的自营、达人与商品卡成交占比横向堆叠图" width="1800" height="960"></div><figcaption id="creator-mix-chart-caption">来源：用户补充的品牌成交占比表。原表未填写统计周期与数据平台，不能解释为近 365 天份额。</figcaption></figure>
           <div class="three-col-channel">
             <article class="panel"><div class="panel-head"><div><h3>自营为主</h3><p>自营占自营＋达人 ≥60%</p></div></div><div id="self-mix-brands" class="channel-leaders"></div><div class="table-footer"><button id="self-mix-prev" type="button">上一页</button><span id="self-mix-page"></span><button id="self-mix-next" type="button">下一页</button></div></article>
             <article class="panel"><div class="panel-head"><div><h3>达人为主</h3><p>达人占自营＋达人 ≥60%</p></div></div><div id="creator-mix-brands" class="channel-leaders"></div><div class="table-footer"><button id="creator-mix-prev" type="button">上一页</button><span id="creator-mix-page"></span><button id="creator-mix-next" type="button">下一页</button></div></article>
@@ -229,7 +230,8 @@
   <script src="data.js?v=52a454cb"></script>
   <script src="compass_category_data.js?v=8a6927f8"></script>
   <script src="annual_ecology_data.js?v=874e9ee3"></script>
-  <script src="app.js?v=2de0ce5b"></script>
+  <script src="creator_mix_category_data.js?v=f1b10af4"></script>
+  <script src="app.js?v=25d585d0"></script>
   <script src="public_category_app.js?v=c86ffe5f"></script>
   <script src="compass_app.js?v=2af919e1"></script>
   <script src="positioning_data.js?v=fa5715b2"></script>
