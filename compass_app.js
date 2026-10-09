@@ -90,7 +90,7 @@
   function renderProducts() {
     const month = $('export-product-month').value;
     const previous = months[months.indexOf(month) - 1];
-    const inCategoryOnly = dataset.filterMode !== 'none' && $('export-adult-only').checked;
+    const inCategoryOnly = $('export-adult-only').checked;
     const query = $('export-product-search').value.trim().toLowerCase();
     const original = dataset.products[month];
     const rows = original.filter(row => (!inCategoryOnly || (category === 'shampoo' ? row.adultShampooCandidate : row.inCategory)) &&
@@ -105,32 +105,12 @@
     $('export-product-chart-title').textContent = previous ? `${Number(previous.slice(-2))}→${monthLabel(month)}代表商品金额指数变动 · 点击条形打开商品链接` : `${monthLabel(month)}为本类目首期导出，暂无上月对照`;
     changeChart('export-product-change-chart', decorated.filter(row => row.rank <= 15 && row.change != null)
       .map(row => ({name:row.title,value:row.change,url:row.productUrl})));
-    $('export-product-rows').innerHTML = decorated.slice(productPage * 5, (productPage + 1) * 5).map(row => `<tr><td>${row.rank}</td><td><button type="button" class="export-product-pick" data-product-url="${esc(row.productUrl)}" title="查看这款产品的月度走势">${esc(row.title)}</button>${row.possibleBundle ? '<span class="badge bundle">标题疑似套装</span>' : ''}<small>${esc(row.leafCategory.split('>').at(-1))}${dataset.filterMode === 'none' ? ' · 类别待核' : (category === 'shampoo' ? row.adultShampooCandidate : row.inCategory) ? '' : ' · 范围外待复核'} · <a href="${esc(row.productUrl)}" target="_blank" rel="noopener noreferrer">商品链接 ↗</a></small></td><td>${esc(row.brand)}</td><td>${esc(row.shop || '—')}</td><td>${esc(row.listedPrice)}</td><td>${nf.format(row.amountIndex)}</td><td>${nf.format(row.unitsIndex)}</td><td>${changeCell(row.change)}</td></tr>`).join('') || '<tr><td colspan="8" class="empty-row">没有符合条件的商品</td></tr>';
-  }
-
-  function showUnverified() {
-    $('compass-title').textContent = '护发精油 · 独立月榜待补';
-    $('compass-source-pill').textContent = '来源核对中';
-    $('compass-category-coverage').textContent = '未取得独立罗盘月榜';
-    $('compass-scope-note').textContent = dataset.note;
-    $('compass-overview-title').textContent = '护发精油月榜暂无可核实数据';
-    $('compass-overview-subtitle').textContent = '已逐文件比对，避免把头皮护理数据误标为护发精油';
-    $('compass-file-count').textContent = '12 份同内容文件待替换';
-    $('export-kpis').innerHTML = '<div><span>数据状态</span><strong>待补独立导出</strong><small>收到正确文件后可直接更新</small></div>';
-    $('compass-overview-note').textContent = dataset.note;
-    for (const id of ['export-brand-line','export-brand-deltas','export-brand-change-chart','export-brand-sort-results','export-product-line','export-product-change-chart']) $(id).innerHTML = '<p class="mix-empty">暂无可核实的独立罗盘月榜。</p>';
-    $('export-product-rows').innerHTML = '<tr><td colspan="8" class="empty-row">待补护发精油独立月榜</td></tr>';
-    $('export-product-status').textContent = '护发精油：独立月榜待补';
-    $('export-product-page').textContent = '暂无记录';
-    $('export-brand-change-title').textContent = '品牌指数变动';
-    $('export-brand-sort-title').textContent = '品牌排序';
-    $('export-product-chart-title').textContent = '产品指数变动';
-    for (const id of ['export-brand-select','export-brand-sort','export-product-select','export-product-month','export-product-search','export-adult-only','export-product-prev','export-product-next']) { $(id).disabled = true; if ($(id).tagName === 'SELECT') $(id).innerHTML = ''; }
+    $('export-product-rows').innerHTML = decorated.slice(productPage * 5, (productPage + 1) * 5).map(row => `<tr><td>${row.rank}</td><td><button type="button" class="export-product-pick" data-product-url="${esc(row.productUrl)}" title="查看这款产品的月度走势">${esc(row.title)}</button>${row.possibleBundle ? '<span class="badge bundle">标题疑似套装</span>' : ''}<small>${esc(row.leafCategory.split('>').at(-1))}${(category === 'shampoo' ? row.adultShampooCandidate : row.inCategory) ? '' : ' · 范围外待复核'} · <a href="${esc(row.productUrl)}" target="_blank" rel="noopener noreferrer">商品链接 ↗</a></small></td><td>${esc(row.brand)}</td><td>${esc(row.shop || '—')}</td><td>${esc(row.listedPrice)}</td><td>${nf.format(row.amountIndex)}</td><td>${nf.format(row.unitsIndex)}</td><td>${changeCell(row.change)}</td></tr>`).join('') || '<tr><td colspan="8" class="empty-row">没有符合条件的商品</td></tr>';
   }
 
   function renderCategory() {
     dataset = source[category];
-    if (dataset.status !== 'ready') { showUnverified(); return; }
+    if (!dataset) return;
     for (const id of ['export-brand-select','export-brand-sort','export-product-select','export-product-month','export-product-search','export-adult-only']) $(id).disabled = false;
     months = dataset.months;
     const latest = months.at(-1), previous = months.at(-2);
@@ -147,8 +127,7 @@
       .sort((a,b) => b.month.localeCompare(a.month) || a.rank - b.rank);
     const comparable = latestBrands.filter(row => brandMaps[previous]?.has(row.brand));
     const rising = comparable.filter(row => row.amountIndex > brandMaps[previous].get(row.brand).amountIndex);
-    const noLeafFilter = dataset.filterMode === 'none';
-    const inCategoryCount = noLeafFilter ? latestProducts.length : latestProducts.filter(row => category === 'shampoo' ? row.adultShampooCandidate : row.inCategory).length;
+    const inCategoryCount = latestProducts.filter(row => category === 'shampoo' ? row.adultShampooCandidate : row.inCategory).length;
     const period = rangeLabel(months);
     $('compass-title').textContent = `${dataset.label}榜单 · ${period}`;
     $('compass-source-pill').textContent = `罗盘·策略 · ${dataset.files.length} 份月榜 Excel`;
@@ -159,16 +138,16 @@
     $('compass-file-count').textContent = `${dataset.files.length} 份 Excel · 文件名标注月份`;
     const note = category === 'shampoo'
       ? '工作簿未写年份、页面筛选条件或人民币金额；品牌榜未排除儿童商品。商品按标题与叶子类目初筛成人候选。'
-      : `来源：用户提供的“${dataset.label}”月度品牌榜和商品榜。工作簿未写年份、页面筛选条件或人民币金额；${noLeafFilter ? '原榜全量呈现，叶子类目不用于护发精油筛选。' : '商品榜含少量其他叶子类目，可用下方复选框筛选。'}${dataset.note || ''}`;
+      : `来源：用户提供的“${dataset.label}”月度品牌榜和商品榜。工作簿未写年份、页面筛选条件或人民币金额；商品榜含少量其他叶子类目，可用下方复选框筛选。${dataset.note || ''}`;
     $('compass-overview-note').textContent = note;
     $('export-kpis').innerHTML = [
       ['最新榜首品牌',latestBrands[0].brand,`${monthLabel(latest)}金额指数 ${nf.format(latestBrands[0].amountIndex)}`],
       [`${Number(previous.slice(-2))}→${monthLabel(latest)}可比较品牌`,`${comparable.length} / ${latestBrands.length}`,'均进入相邻两个月品牌榜'],
       ['金额指数上升',`${rising.length} 个品牌`,'只表示榜单指数上升'],
-      [`${monthLabel(latest)}${noLeafFilter ? '原榜商品' : category === 'shampoo' ? '成人候选' : '本类目商品'}`,`${inCategoryCount} / ${latestProducts.length}`,noLeafFilter ? '类别归属待复核' : '按标题与叶子类目初筛'],
+      [`${monthLabel(latest)}${category === 'shampoo' ? '成人候选' : '本类目商品'}`,`${inCategoryCount} / ${latestProducts.length}`,'按标题与叶子类目初筛'],
     ].map(([label,value,detail]) => `<div><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(detail)}</small></div>`).join('');
-    $('export-category-filter-label').textContent = noLeafFilter ? '原榜全量（叶子类目未标护发精油）' : category === 'shampoo' ? '仅成人洗发水候选' : `仅叶子类目为${dataset.leafLabel}`;
-    $('compass-product-subtitle').textContent = `按月查看${dataset.label}商品金额指数与原榜记录；${noLeafFilter ? '分类归属待核对' : '默认仅看本类目候选'}`;
+    $('export-category-filter-label').textContent = category === 'shampoo' ? '仅成人洗发水候选' : `仅叶子类目为${dataset.leafLabel}`;
+    $('compass-product-subtitle').textContent = `按月查看${dataset.label}商品金额指数与原榜记录；默认仅看本类目候选`;
     $('export-brand-select').innerHTML = brandNames.map(name => `<option value="${esc(name)}">${esc(name)}</option>`).join('');
     $('export-brand-select').value = latestBrands[0].brand;
     $('export-brand-sort').innerHTML = [
@@ -185,8 +164,7 @@
     $('export-product-select').innerHTML = productChoices.map(row => `<option value="${esc(row.productUrl)}">${esc(row.brand)} · ${esc(row.title.slice(0,38))}</option>`).join('');
     $('export-product-month').innerHTML = [...months].reverse().map(month => `<option value="${month}">${monthLabel(month)}</option>`).join('');
     $('export-product-search').value = '';
-    $('export-adult-only').checked = !noLeafFilter;
-    $('export-adult-only').disabled = noLeafFilter;
+    $('export-adult-only').checked = true;
     productPage = 0;
     renderBrandLine(); renderBrandSort(); renderProductLine(); renderProducts();
   }
