@@ -6,7 +6,7 @@
   <meta name="description" content="洗护市场与竞品观察，整理公开资料、蝉妈妈导出和罗盘·策略月度榜单。">
   <title>洗护市场&amp;竞品看板</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230d2338'/%3E%3Cpath d='M12 43V20h8v23m9 0V30h8v13m9 0V12h8v31' stroke='%2347d2ad' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=92bec19b">
+  <link rel="stylesheet" href="styles.css?v=e85182a2">
 </head>
 <body>
   <div class="app-shell">
@@ -108,7 +108,7 @@
           <div class="panel export-overview" id="compass-export"><div class="panel-head"><div><h3 id="compass-overview-title">罗盘洗发水导出榜 · 4—9 月</h3><p id="compass-overview-subtitle">品牌、商品与对应指数集中展示；各月榜单条数以原文件为准</p></div><span class="source-pill" id="compass-file-count">12 份 Excel · 月份由文件名标注</span></div><div class="export-kpis" id="export-kpis"></div><div class="panel-foot" id="compass-overview-note">工作簿未写年份、页面筛选条件或人民币金额；年份按本次资料上下文推定为 2026。品牌榜未排除儿童商品，商品榜下方可按标题和叶子类目初筛。核对说明（本地底稿） · <a href="compass-brand-index.csv">下载品牌趋势</a> · <a href="compass-product-records.csv">下载商品全榜</a></div></div>
           <div class="panel export-brand-panel">
             <div class="panel-head">
-              <div><h3>品牌指数走势</h3><p>选择品牌查看所选月份的金额指数；可按当月名次或相邻一、两个月的指数变动排序</p></div>
+              <div><h3>品牌金额指数与销售额估算走势</h3><p>两条线共用一张双轴图；可按当月名次或相邻一、两个月的指数变动排序</p></div>
               <div class="export-controls">
                 <label>品牌 <select id="export-brand-select"></select></label>
                 <label>排序 <select id="export-brand-sort">
@@ -125,7 +125,6 @@
               </div>
             </div>
             <div id="export-brand-line" class="export-line"></div>
-            <div id="export-brand-sales-line" class="export-line export-sales-line"></div>
             <div id="export-brand-deltas" class="export-brand-deltas"></div>
             <div class="chart-title" id="export-brand-change-title">8→9 月金额指数变动 · 9 月前 15 名中的可比较品牌 · 最多显示 10 个</div>
             <div class="change-chart" id="export-brand-change-chart"></div>
@@ -133,7 +132,7 @@
             <div class="export-brand-sort-results" id="export-brand-sort-results"></div>
             <div class="panel-foot">销售额估算 = 品牌金额指数 × 93.47 元／点，仅为统一试算；此系数未经品牌榜和其他类目验证。指数变动不是实际 GMV 增速。品牌未进某月前 30 名时不计算该月相关变动。</div>
           </div>
-          <div class="panel export-product-panel"><div class="panel-head"><div><h3>产品指数走势</h3><p id="compass-product-subtitle">按月份查看商品金额指数变动与对应榜单数据</p></div><div class="export-controls"><label>追踪产品 <select id="export-product-select"></select></label><label>月份 <select id="export-product-month"></select></label><label class="export-check"><input id="export-adult-only" type="checkbox" checked> <span id="export-category-filter-label">仅成人洗发水候选</span></label><label class="export-search"><span class="sr-only">搜索商品或品牌</span><input id="export-product-search" type="search" placeholder="搜索品牌、商品或店铺"></label></div></div><div id="export-product-line" class="export-line export-product-line"></div><div id="export-product-sales-line" class="export-line export-sales-line"></div><div class="table-status"><span id="export-product-status">—</span><span>跨月按商品 ID 匹配；展示价不是实付均价</span></div><div class="chart-title" id="export-product-chart-title">8→9 月代表商品金额指数变动 · 点击条形打开商品链接</div><div class="change-chart" id="export-product-change-chart"></div><div class="table-scroll"><table class="export-product-table"><thead><tr><th>名次</th><th>商品标题</th><th>品牌</th><th>店铺</th><th>展示价</th><th>销售额估算</th><th>金额指数</th><th>件数指数</th><th>上月指数变动</th></tr></thead><tbody id="export-product-rows"></tbody></table></div><div class="table-footer"><button id="export-product-prev" type="button">上一页</button><span id="export-product-page" aria-live="polite"></span><button id="export-product-next" type="button">下一页</button></div><div class="panel-foot">销售额估算 = 商品金额指数 × 93.47 元／点，适用于本页全部类目的试算显示，并非实际 GMV。按原 Excel 标题超链接中的商品 ID 匹配相邻月份，且两月各出现一次时计算指数变化；点击上方条形可打开商品链接。</div></div>
+          <div class="panel export-product-panel"><div class="panel-head"><div><h3>产品金额指数与销售额估算走势</h3><p id="compass-product-subtitle">按月份查看商品金额指数变动与对应榜单数据</p></div><div class="export-controls"><label>追踪产品 <select id="export-product-select"></select></label><label>月份 <select id="export-product-month"></select></label><label class="export-check"><input id="export-adult-only" type="checkbox" checked> <span id="export-category-filter-label">仅成人洗发水候选</span></label><label class="export-search"><span class="sr-only">搜索商品或品牌</span><input id="export-product-search" type="search" placeholder="搜索品牌、商品或店铺"></label></div></div><div id="export-product-line" class="export-line export-product-line"></div><div class="table-status"><span id="export-product-status">—</span><span>跨月按商品 ID 匹配；展示价不是实付均价</span></div><div class="chart-title" id="export-product-chart-title">8→9 月代表商品金额指数变动 · 点击条形打开商品链接</div><div class="change-chart" id="export-product-change-chart"></div><div class="table-scroll"><table class="export-product-table"><thead><tr><th>名次</th><th>商品标题</th><th>品牌</th><th>店铺</th><th>展示价</th><th>销售额估算</th><th>金额指数</th><th>件数指数</th><th>上月指数变动</th></tr></thead><tbody id="export-product-rows"></tbody></table></div><div class="table-footer"><button id="export-product-prev" type="button">上一页</button><span id="export-product-page" aria-live="polite"></span><button id="export-product-next" type="button">下一页</button></div><div class="panel-foot">销售额估算 = 商品金额指数 × 93.47 元／点，适用于本页全部类目的试算显示，并非实际 GMV。按原 Excel 标题超链接中的商品 ID 匹配相邻月份，且两月各出现一次时计算指数变化；点击上方条形可打开商品链接。</div></div>
 
         </section>
 
@@ -235,7 +234,7 @@
   <script src="compass_estimate.js?v=94c3fbc1"></script>
   <script src="app.js?v=25d585d0"></script>
   <script src="public_category_app.js?v=c86ffe5f"></script>
-  <script src="compass_app.js?v=450338ff"></script>
+  <script src="compass_app.js?v=cb729660"></script>
   <script src="positioning_data.js?v=fa5715b2"></script>
   <script src="positioning_app.js?v=088d2e5c"></script>
   <script src="competitor_data.js?v=944e2d2e"></script>

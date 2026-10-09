@@ -39,27 +39,35 @@
     }).join('') : '<p class="mix-empty">所选月份没有可比较记录。</p>';
   }
 
-  function lineChart(id, title, values, color, ranks, mode = 'index') {
+  function lineChart(id, title, values, indexColor, ranks) {
     const maximum = Math.max(1, ...values.filter(value => value != null)) * 1.15;
-    const left = 55, right = 580, bottom = 165;
+    const left = 85, right = 625, top = 30, bottom = 170;
     const x = index => months.length === 1 ? (left + right) / 2 : left + index * (right - left) / (months.length - 1);
-    const y = value => bottom - value / maximum * 130;
-    let lines = '', dots = '';
-    values.forEach((value, index) => {
-      if (value == null) return;
-      if (index && values[index - 1] != null) lines += `<line x1="${x(index - 1).toFixed(1)}" y1="${y(values[index - 1]).toFixed(1)}" x2="${x(index).toFixed(1)}" y2="${y(value).toFixed(1)}" stroke="${color}" stroke-width="3"/>`;
-      dots += `<circle cx="${x(index).toFixed(1)}" cy="${y(value).toFixed(1)}" r="5" fill="${color}"><title>${esc(months[index])}：${ranks?.[index] ? `第 ${ranks[index]} 名，` : ''}销售额估算 ${estimate.text(value)}，金额指数 ${nf.format(value)}</title></circle><text x="${x(index).toFixed(1)}" y="${Math.max(18, y(value) - 11).toFixed(1)}" text-anchor="middle" class="point-label">${mode === 'estimate' ? estimate.text(value) : nf.format(value)}</text>`;
-    });
-    const metric = mode === 'estimate' ? '销售额估算' : '金额指数';
-    const explanation = mode === 'estimate' ? `按 ${estimate.yuanPerPoint.toFixed(2)} 元／点换算；曲线形状与指数走势相同` : '原始榜单指数；缺席月份留空';
-    $(id).innerHTML = `<div class="export-line-heading"><strong title="${esc(title)}">${esc(title)} · ${metric}走势</strong><span>${explanation}</span></div><svg viewBox="0 0 640 215" role="img" aria-label="${esc(title)} ${esc(rangeLabel(months))}${metric}走势"><line x1="55" y1="165" x2="580" y2="165" stroke="#cad8dc"/><line x1="55" y1="35" x2="580" y2="35" stroke="#e6eff0" stroke-dasharray="4 4"/>${lines}${dots}${months.map((month, index) => `<text x="${x(index).toFixed(1)}" y="192" text-anchor="middle" class="month-label">${monthLabel(month)}</text>`).join('')}</svg>`;
+    const y = value => bottom - value / maximum * (bottom - top);
+    const points = values.map((value, index) => value == null ? null : `${x(index).toFixed(1)},${y(value).toFixed(1)}`);
+    const segments = points.slice(1).map((point, index) => point && points[index] ?
+      `<line x1="${x(index).toFixed(1)}" y1="${y(values[index]).toFixed(1)}" x2="${x(index + 1).toFixed(1)}" y2="${y(values[index + 1]).toFixed(1)}" stroke="${indexColor}" stroke-width="4" stroke-linecap="round"/>` +
+      `<line x1="${x(index).toFixed(1)}" y1="${y(values[index]).toFixed(1)}" x2="${x(index + 1).toFixed(1)}" y2="${y(values[index + 1]).toFixed(1)}" stroke="#c08039" stroke-width="2.5" stroke-dasharray="7 7"/>` : '').join('');
+    const ticks = [0, 0.5, 1].map(fraction => {
+      const value = maximum * fraction, position = y(value).toFixed(1);
+      return `<line x1="${left}" x2="${right}" y1="${position}" y2="${position}" stroke="#e6eff0" stroke-dasharray="4 4"/>` +
+        `<text x="${left - 11}" y="${Number(position) + 4}" text-anchor="end" class="axis-index">${nf.format(Math.round(value))}</text>` +
+        `<text x="${right + 42}" y="${Number(position) + 4}" text-anchor="start" class="axis-estimate">${estimate.text(value)}</text>`;
+    }).join('');
+    const dots = values.map((value, index) => value == null ? '' :
+      `<circle cx="${x(index).toFixed(1)}" cy="${y(value).toFixed(1)}" r="6" fill="${indexColor}"><title>${esc(months[index])}：${ranks?.[index] ? `第 ${ranks[index]} 名，` : ''}金额指数 ${nf.format(value)}，销售额估算 ${estimate.text(value)}</title></circle>` +
+      `<circle cx="${x(index).toFixed(1)}" cy="${y(value).toFixed(1)}" r="3" fill="#c08039" pointer-events="none"/>` +
+      `<text x="${x(index).toFixed(1)}" y="${Math.max(16, y(value) - 12).toFixed(1)}" text-anchor="middle" class="point-label">${nf.format(value)}</text>` +
+      `<text x="${x(index).toFixed(1)}" y="${Math.min(190, y(value) + 20).toFixed(1)}" text-anchor="middle" class="point-estimate-label">${estimate.text(value)}</text>`).join('');
+    $(id).innerHTML = `<div class="export-line-heading"><strong title="${esc(title)}">${esc(title)} · 金额指数与销售额估算走势</strong><span>销售额估算 = 指数 × ${estimate.yuanPerPoint.toFixed(2)} 元／点；两条线按双轴绘制，形状重合</span></div>` +
+      `<div class="export-line-legend"><span><i style="background:${indexColor}"></i>金额指数（左轴）</span><span><i class="estimate-dash"></i>销售额估算（右轴）</span></div>` +
+      `<svg viewBox="0 0 760 220" role="img" aria-label="${esc(title)} ${esc(rangeLabel(months))}金额指数与销售额估算双轴折线图">${ticks}${segments}${dots}${months.map((month, index) => `<text x="${x(index).toFixed(1)}" y="207" text-anchor="middle" class="month-label">${monthLabel(month)}</text>`).join('')}</svg>`;
   }
 
   function renderBrandLine() {
     const name = $('export-brand-select').value;
     const values = months.map(month => brandMaps[month].get(name)?.amountIndex ?? null);
     lineChart('export-brand-line', name, values, '#138f7b');
-    lineChart('export-brand-sales-line', name, values, '#c08039', null, 'estimate');
     const groups = [
       ['相邻月份', months.slice(1).map((_, index) => [index, index + 1])],
       ['跨两个月', months.slice(2).map((_, index) => [index, index + 2])],
@@ -93,7 +101,6 @@
     const values = rows.map(item => item.row?.amountIndex ?? null);
     const ranks = rows.map(item => item.row?.rank);
     lineChart('export-product-line', selected?.title || '请选择产品', values, '#5276c6', ranks);
-    lineChart('export-product-sales-line', selected?.title || '请选择产品', values, '#c08039', ranks, 'estimate');
     const rankNote = rows.map(({month,row}) => `${monthLabel(month)}${row ? `第 ${row.rank} 名` : '未入该月榜单'}`).join(' · ');
     const link = safeUrl(url) ? ` · <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">打开商品链接 ↗</a>` : '';
     $('export-product-line').insertAdjacentHTML('beforeend', `<div class="export-product-line-note">${rankNote}${link}</div>`);
@@ -159,7 +166,7 @@
       [`${monthLabel(latest)}${category === 'shampoo' ? '成人候选' : '本类目商品'}`,`${inCategoryCount} / ${latestProducts.length}`,'按标题与叶子类目初筛'],
     ].map(([label,value,detail]) => `<div><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(detail)}</small></div>`).join('');
     $('export-category-filter-label').textContent = category === 'shampoo' ? '仅成人洗发水候选' : `仅叶子类目为${dataset.leafLabel}`;
-    $('compass-product-subtitle').textContent = `按月查看${dataset.label}商品金额指数与原榜记录；默认仅看本类目候选`;
+    $('compass-product-subtitle').textContent = `同图查看${dataset.label}商品金额指数与销售额估算走势；默认仅看本类目候选`;
     $('export-brand-select').innerHTML = brandNames.map(name => `<option value="${esc(name)}">${esc(name)}</option>`).join('');
     $('export-brand-select').value = latestBrands[0].brand;
     $('export-brand-sort').innerHTML = [
