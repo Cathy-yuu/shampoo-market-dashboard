@@ -41,27 +41,22 @@
 
   function lineChart(id, title, values, indexColor, ranks) {
     const maximum = Math.max(1, ...values.filter(value => value != null)) * 1.15;
-    const left = 85, right = 625, top = 30, bottom = 170;
+    const left = 65, right = 590, top = 30, bottom = 170;
     const x = index => months.length === 1 ? (left + right) / 2 : left + index * (right - left) / (months.length - 1);
     const y = value => bottom - value / maximum * (bottom - top);
     const points = values.map((value, index) => value == null ? null : `${x(index).toFixed(1)},${y(value).toFixed(1)}`);
     const segments = points.slice(1).map((point, index) => point && points[index] ?
-      `<line x1="${x(index).toFixed(1)}" y1="${y(values[index]).toFixed(1)}" x2="${x(index + 1).toFixed(1)}" y2="${y(values[index + 1]).toFixed(1)}" stroke="${indexColor}" stroke-width="4" stroke-linecap="round"/>` +
-      `<line x1="${x(index).toFixed(1)}" y1="${y(values[index]).toFixed(1)}" x2="${x(index + 1).toFixed(1)}" y2="${y(values[index + 1]).toFixed(1)}" stroke="#c08039" stroke-width="2.5" stroke-dasharray="7 7"/>` : '').join('');
+      `<line x1="${x(index).toFixed(1)}" y1="${y(values[index]).toFixed(1)}" x2="${x(index + 1).toFixed(1)}" y2="${y(values[index + 1]).toFixed(1)}" stroke="${indexColor}" stroke-width="3" stroke-linecap="round"/>` : '').join('');
     const ticks = [0, 0.5, 1].map(fraction => {
       const value = maximum * fraction, position = y(value).toFixed(1);
       return `<line x1="${left}" x2="${right}" y1="${position}" y2="${position}" stroke="#e6eff0" stroke-dasharray="4 4"/>` +
-        `<text x="${left - 11}" y="${Number(position) + 4}" text-anchor="end" class="axis-index">${nf.format(Math.round(value))}</text>` +
-        `<text x="${right + 42}" y="${Number(position) + 4}" text-anchor="start" class="axis-estimate">${estimate.text(value)}</text>`;
+        `<text x="${left - 11}" y="${Number(position) + 4}" text-anchor="end">${nf.format(Math.round(value))}</text>`;
     }).join('');
     const dots = values.map((value, index) => value == null ? '' :
-      `<circle cx="${x(index).toFixed(1)}" cy="${y(value).toFixed(1)}" r="6" fill="${indexColor}"><title>${esc(months[index])}：${ranks?.[index] ? `第 ${ranks[index]} 名，` : ''}金额指数 ${nf.format(value)}，销售额估算 ${estimate.text(value)}</title></circle>` +
-      `<circle cx="${x(index).toFixed(1)}" cy="${y(value).toFixed(1)}" r="3" fill="#c08039" pointer-events="none"/>` +
-      `<text x="${x(index).toFixed(1)}" y="${Math.max(16, y(value) - 12).toFixed(1)}" text-anchor="middle" class="point-label">${nf.format(value)}</text>` +
-      `<text x="${x(index).toFixed(1)}" y="${Math.min(190, y(value) + 20).toFixed(1)}" text-anchor="middle" class="point-estimate-label">${estimate.text(value)}</text>`).join('');
-    $(id).innerHTML = `<div class="export-line-heading"><strong title="${esc(title)}">${esc(title)} · 金额指数与销售额估算走势</strong><span>销售额估算 = 指数 × ${estimate.yuanPerPoint.toFixed(2)} 元／点；两条线按双轴绘制，形状重合</span></div>` +
-      `<div class="export-line-legend"><span><i style="background:${indexColor}"></i>金额指数（左轴）</span><span><i class="estimate-dash"></i>销售额估算（右轴）</span></div>` +
-      `<svg viewBox="0 0 760 220" role="img" aria-label="${esc(title)} ${esc(rangeLabel(months))}金额指数与销售额估算双轴折线图">${ticks}${segments}${dots}${months.map((month, index) => `<text x="${x(index).toFixed(1)}" y="207" text-anchor="middle" class="month-label">${monthLabel(month)}</text>`).join('')}</svg>`;
+      `<circle cx="${x(index).toFixed(1)}" cy="${y(value).toFixed(1)}" r="5" fill="${indexColor}"><title>${esc(months[index])}：${ranks?.[index] ? `第 ${ranks[index]} 名，` : ''}金额指数 ${nf.format(value)}</title></circle>` +
+      `<text x="${x(index).toFixed(1)}" y="${Math.max(16, y(value) - 12).toFixed(1)}" text-anchor="middle" class="point-label">${nf.format(value)}</text>`).join('');
+    $(id).innerHTML = `<div class="export-line-heading"><strong title="${esc(title)}">${esc(title)} · 金额指数走势</strong><span>原始榜单指数；缺席月份留空</span></div>` +
+      `<svg viewBox="0 0 640 215" role="img" aria-label="${esc(title)} ${esc(rangeLabel(months))}金额指数折线图">${ticks}${segments}${dots}${months.map((month, index) => `<text x="${x(index).toFixed(1)}" y="205" text-anchor="middle" class="month-label">${monthLabel(month)}</text>`).join('')}</svg>`;
   }
 
   function renderBrandLine() {
@@ -166,7 +161,7 @@
       [`${monthLabel(latest)}${category === 'shampoo' ? '成人候选' : '本类目商品'}`,`${inCategoryCount} / ${latestProducts.length}`,'按标题与叶子类目初筛'],
     ].map(([label,value,detail]) => `<div><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(detail)}</small></div>`).join('');
     $('export-category-filter-label').textContent = category === 'shampoo' ? '仅成人洗发水候选' : `仅叶子类目为${dataset.leafLabel}`;
-    $('compass-product-subtitle').textContent = `同图查看${dataset.label}商品金额指数与销售额估算走势；默认仅看本类目候选`;
+    $('compass-product-subtitle').textContent = `按月查看${dataset.label}商品金额指数与原榜记录；销售额估算保留在下方表格`;
     $('export-brand-select').innerHTML = brandNames.map(name => `<option value="${esc(name)}">${esc(name)}</option>`).join('');
     $('export-brand-select').value = latestBrands[0].brand;
     $('export-brand-sort').innerHTML = [
