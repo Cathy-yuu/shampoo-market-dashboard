@@ -16,6 +16,7 @@
   const esc = value => String(value == null || value === '' ? '—' : value)
     .replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const nf = new Intl.NumberFormat('zh-CN');
+  const estimate = window.COMPASS_ESTIMATE;
   const colors = ['#178b86', '#5276c6', '#d79a52', '#866bb5', '#67a48f', '#bf7590', '#6f98b2'];
   const dimensions = {
     position: '产品定位',
@@ -62,8 +63,8 @@
     const brandRows = compass.months.map(month => ({
       month, row: compass.brands[month].find(row => row.brand === matched),
     }));
-    return `<div class="positioning-compass"><h4>罗盘 4—9 月品牌金额指数</h4><p class="positioning-compass-note">罗盘榜单名称：${esc(matched)}。仅展示品牌金额指数；未进入当月品牌前 30 的月份留空，指数不是人民币销售额。</p>
-      <div class="positioning-compass-series">${brandRows.map(({month,row}) => `<div class="positioning-compass-month"><span>${Number(month.slice(-2))} 月</span><strong>${row ? nf.format(row.amountIndex) : '—'}</strong>${row ? '' : '<small>未进前 30</small>'}</div>`).join('')}</div></div>`;
+    return `<div class="positioning-compass"><h4>罗盘 4—9 月品牌金额指数</h4><p class="positioning-compass-note">罗盘榜单名称：${esc(matched)}。销售额估算统一按金额指数 × ${estimate.yuanPerPoint.toFixed(2)} 元／点试算；品牌榜尚未经实际销售额校准，未进当月前 30 的月份留空。</p>
+      <div class="positioning-compass-series">${brandRows.map(({month,row}) => `<div class="positioning-compass-month"><span>${Number(month.slice(-2))} 月</span><strong>${row ? estimate.text(row.amountIndex) : '—'}</strong><small>${row ? `金额指数 ${nf.format(row.amountIndex)}` : '未进前 30'}</small></div>`).join('')}</div></div>`;
   }
 
   function select(index) {
@@ -96,7 +97,7 @@
       </div>
       <details class="positioning-script"><summary>查看直播间话术框架</summary><p>${esc(record.liveScript)}</p></details>
       ${compassDetail(record.brand)}
-      <div class="panel-foot">直播间主讲卖点与 EHD 分类按你的补充展示；其余定位与营销说法来自竞品拆解表。罗盘金额指数来自 4—9 月品牌榜，不代表人民币销售额。</div>`;
+      <div class="panel-foot">直播间主讲卖点与 EHD 分类按你的补充展示；其余定位与营销说法来自竞品拆解表。罗盘品牌榜的销售额估算仅按统一系数试算，不是实际人民币成交额。</div>`;
   }
 
   function renderMap() {

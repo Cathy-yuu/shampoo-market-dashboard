@@ -75,15 +75,21 @@
 .export-brand-deltas>div>div{display:flex;flex-wrap:wrap;gap:7px}
 .export-brand-deltas>div>div>span{font-size:12px;white-space:nowrap;background:#fff;border:1px solid #e3ebed;border-radius:6px;padding:5px 7px}
 .export-brand-deltas .change{padding:0 3px;background:transparent}
-.export-brand-sort-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 14px}
-.export-brand-sort-results button{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:9px;align-items:center;border:1px solid #e0e9e9;border-radius:7px;background:#f8fbfa;text-align:left;padding:9px 11px;color:#1f4052;font-size:13px}
+.export-brand-sort-results{display:grid;gap:7px;overflow-x:auto}
+.export-brand-sort-head,.export-brand-sort-results button{display:grid;grid-template-columns:44px minmax(150px,1fr) 130px 120px 105px;gap:9px;align-items:center;min-width:620px;padding:9px 11px;font-size:13px}
+.export-brand-sort-head{color:#607184;font-weight:700;background:#eef5f3;border-radius:7px}
+.export-brand-sort-results button{border:1px solid #e0e9e9;border-radius:7px;background:#f8fbfa;text-align:left;color:#1f4052}
 .export-brand-sort-results button:hover,.export-brand-sort-results button:focus-visible{border-color:#5fbba9;background:#eaf8f4}
 .export-brand-sort-results b{color:#0d907e;font-size:12px}
 .export-brand-sort-results span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .export-brand-sort-results strong{font-variant-numeric:tabular-nums;white-space:nowrap}
+.estimate-value{color:#0a756b;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.export-product-table{min-width:1450px}
+.export-sales-line{background:#fffaf3;border-color:#eedfcb;margin-top:10px}
+.export-sales-line svg .point-label{fill:#9b651f}
 .compass-product-link{color:#087c70;text-decoration:none}
 .compass-product-link:hover{text-decoration:underline}
-@media(max-width:900px){.export-brand-deltas,.export-brand-sort-results{grid-template-columns:1fr}}
+@media(max-width:900px){.export-brand-deltas{grid-template-columns:1fr}}
 
 /* Monthly Compass category selection */
 .compass-category-bar{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;background:#e6f3ef;border:1px solid #b9dfd3;border-radius:10px;padding:13px 16px}
