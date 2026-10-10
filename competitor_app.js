@@ -12,7 +12,7 @@
   const amount = value => `${number.format(value)} 万元`;
   const percent = value => `${value >= 0 ? '+' : ''}${value.toFixed(1)}%`;
   const palette = ['#0b897d','#426899','#d48932','#a8546e','#7c67a4','#3187aa','#ba6845','#4b8b51','#79843c','#be6b98','#6d75bb','#9b724b','#547ca5','#a65e77','#368b89'];
-  const brandColor = Object.fromEntries(data.brands.map((brand, index) => [brand.name, palette[index]]));
+  const brandColor = Object.fromEntries(data.brands.map((brand, index) => [brand.name, palette[index % palette.length]]));
   const brandByName = new Map(data.brands.map(brand => [brand.name, brand]));
   const latest = data.fullMonths[data.fullMonths.length - 1];
   const previous = data.fullMonths[data.fullMonths.length - 2];

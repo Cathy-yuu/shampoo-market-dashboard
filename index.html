@@ -160,20 +160,20 @@
         </section>
 
         <section class="section" id="core-competitors" aria-labelledby="core-competitors-title">
-          <div class="section-head"><div><span class="eyebrow">07 / 竞品营销拆解</span><h2 id="core-competitors-title">十五个品牌的经营走势</h2></div><span class="source-pill">用户提供的逐日销售额表 · 2025.10—2026.10</span></div>
-          <div class="scope-banner"><span class="scope-icon">i</span><span>以下金额均按来源表的<strong>逐日主口径估算值</strong>计算，单位为万元。11 个完整自然月用于月度趋势与环比；两端 10 月是不完整月份。固然堂仅覆盖“洗发水线”，其余品牌的商品覆盖范围未在表内统一定义，因此品牌间金额排名只作样本观察，不能解释为市场份额或精确 GMV。</span></div>
+          <div class="section-head"><div><span class="eyebrow">07 / 竞品营销拆解</span><h2 id="core-competitors-title">二十个品牌的经营走势</h2></div><span class="source-pill">用户提供的逐日销售额表 · 2025.10—2026.10</span></div>
+          <div class="scope-banner"><span class="scope-icon">i</span><span>以下金额均按来源表的<strong>逐日主口径估算值</strong>计算，单位为万元。11 个完整自然月用于月度趋势与环比；两端 10 月是不完整月份。固然堂仅覆盖“洗发水线”；故事树为 4 表逐日合并，未核实仅含洗发水；其他品牌的商品覆盖范围也未在表内统一定义。品牌间金额排名只作样本观察，不能解释为市场份额或精确 GMV。</span></div>
           <div class="competitor-kpis" id="competitor-kpis"></div>
           <article class="panel competitor-panel competitor-observe-panel">
             <div class="panel-head"><div><h3>品牌月度观察 · 2026 年 4—9 月</h3><p>默认并排查看六个月；可筛选月份和品牌，每页 5 个</p></div></div>
             <div class="competitor-observe-controls">
               <label>月份 <select id="competitor-observe-month"><option value="all">4—9 月全部</option><option value="2026-04">4 月</option><option value="2026-05">5 月</option><option value="2026-06">6 月</option><option value="2026-07">7 月</option><option value="2026-08">8 月</option><option value="2026-09">9 月</option></select></label>
               <label>搜索品牌 <input id="competitor-observe-search" type="search" placeholder="输入品牌名称"></label>
-              <details class="competitor-brand-picker"><summary id="competitor-brand-picker-label">筛选品牌（全部 15 个）</summary><div class="competitor-brand-options" id="competitor-brand-options"></div><div class="competitor-brand-actions"><button id="competitor-brand-all" type="button">全选</button><button id="competitor-brand-none" type="button">清空</button></div></details>
+              <details class="competitor-brand-picker"><summary id="competitor-brand-picker-label">筛选品牌（全部 20 个）</summary><div class="competitor-brand-options" id="competitor-brand-options"></div><div class="competitor-brand-actions"><button id="competitor-brand-all" type="button">全选</button><button id="competitor-brand-none" type="button">清空</button></div></details>
             </div>
             <div class="table-status"><span id="competitor-observe-status">—</span><span>金额单位：万元 · 来源表逐日主口径的月度合计</span></div>
             <div class="table-scroll"><table class="competitor-table competitor-observe-table"><thead id="competitor-observe-head"></thead><tbody id="competitor-rows"></tbody></table></div>
             <div class="table-footer"><button id="competitor-prev" type="button">上一页</button><span id="competitor-page" aria-live="polite"></span><button id="competitor-next" type="button">下一页</button></div>
-            <div class="panel-foot">名次按当前选择月份的 15 个品牌估算额排列；查看全部月份时按 9 月排序。各月金额来自品牌自身的逐日表，不能解释为成人洗发水市场份额。固然堂比多数品牌早一天，苗甄堂比多数品牌晚一天。</div>
+            <div class="panel-foot">名次按当前选择月份的 20 个品牌估算额排列；查看全部月份时按 9 月排序。各月金额来自品牌自身的逐日表，不能解释为成人洗发水市场份额。各表覆盖的 365 天起止日略有不同。</div>
           </article>
           <article class="panel competitor-panel"><div class="panel-head"><div><h3>月度走势对比</h3><p>以 2025 年 11 月各品牌销售额为 100；比较各自变化幅度，最多显示 4 条线</p></div></div><div class="competitor-choices" id="competitor-choices" role="group" aria-label="选择对比品牌"></div><div id="competitor-index-chart" class="annual-svg-chart"></div><div class="panel-foot">指数仅为同一品牌逐日估算值的月度变化，不是罗盘金额指数，也不是品牌间规模比较。</div></article>
           <div class="competitor-two-col">
@@ -181,7 +181,7 @@
             <article class="panel competitor-panel"><div class="panel-head"><div><h3>逐日变化</h3><p>同一品牌 365 天主口径，7 日移动平均</p></div></div><div id="competitor-daily-chart" class="annual-svg-chart"></div><div class="panel-foot" id="competitor-source-note"></div></article>
           </div>
 
-          <div class="scope-banner competitor-audit"><span class="scope-icon">!</span><span>数据核对：15 份表均为连续 365 天，无缺日、空值或负值。固然堂的“保守口径”有 40 天高于“主口径”，本看板只采用主口径，不展示其保守区间。半亩花田和白云山取表内“当日汇总”列，避免重复累加分图数据。</span></div>
+          <div class="scope-banner competitor-audit"><span class="scope-icon">!</span><span>数据核对：20 份表均为连续 365 天，无缺日、空值或负值。固然堂、小灵树、秀鹤颜、瑶品的“保守口径”分别有 40、1、1、2 天高于“主口径”，这些品牌只采用主口径，不展示保守区间。故事树仅有主口径；半亩花田和白云山取表内“当日汇总”列，避免重复累加分图数据。</span></div>
         </section>
 
         <section class="section" id="brand-analysis" aria-labelledby="brand-analysis-title">
@@ -218,12 +218,12 @@
             <li><strong>品牌分类：</strong>用户提供 82 个品牌分类表，已与罗盘 4—9 月品牌和商品榜核对出现次数及月份；原表白牌为观察标签，未逐一验证商标及经营主体，故在品牌分析中标“白牌待核”。</li>
             <li><strong>近 30 天：</strong>销量明细 Excel（原始文件未公开），400 行；文件未写明精确起止日期。儿童与青少年排除依靠标题关键词，可能漏判。</li>
             <li><strong>罗盘 Excel：</strong>用户提供 4—9 月品牌榜、商品榜各 6 份；每月品牌前 30、商品前 80。文件名只有月份，年份按资料上下文推定为 2026；工作簿未附筛选页面，商品标题单元格含原商品链接。商品榜大多是洗发水叶子类目，个别为相邻类目。</li>
-            <li><strong>核心竞品逐日表：</strong>用户提供 15 个品牌的 365 天逐日销售额估算/合计文件；10 份 Excel、5 份 CSV。主口径单位万元；固然堂为洗发水线，其余品牌的商品覆盖范围未统一说明。月度比较仅用 2025 年 11 月至 2026 年 9 月完整自然月；此表不能证明成人洗发水全市场 GMV 或品牌份额。</li>
+            <li><strong>核心竞品逐日表：</strong>用户提供 20 个品牌的 365 天逐日销售额估算/合计文件；11 份 Excel、9 份 CSV。主口径单位万元；固然堂为洗发水线，故事树是 4 表逐日合并，其余品牌的商品覆盖范围未统一说明。月度比较仅用 2025 年 11 月至 2026 年 9 月完整自然月；此表不能证明成人洗发水全市场 GMV 或品牌份额。</li>
             <li><strong>竞品定位解析：</strong>用户提供《竞品拆解.xlsx》Sheet1 第 2—17 行，16 条商品记录、15 个品牌。仅合并“东方植萃养发”两种写法用于图表分组；商品卖点、背书、数据报告和直播话术为原表记录，未作独立验证。原始工作簿保存在本地 source 目录，不随分享页面公开。</li>
             <li><strong>缺口：</strong>暂无可核实的成人洗发水全市场 GMV、同比/环比增长、商品实付均价和客单价。不同来源或口径的数据不相加。</li>
           </ul></div>
         </section>
-        <footer>市场与竞品观察 · 原始来源文件未随网页发布 · 数据更新于 2026.10.09</footer>
+        <footer>市场与竞品观察 · 原始来源文件未随网页发布 · 数据更新于 2026.10.10</footer>
       </div>
     </main>
   </div>
@@ -237,7 +237,7 @@
   <script src="compass_app.js?v=1b897d3e"></script>
   <script src="positioning_data.js?v=fa5715b2"></script>
   <script src="positioning_app.js?v=088d2e5c"></script>
-  <script src="competitor_data.js?v=944e2d2e"></script>
-  <script src="competitor_app.js?v=fc158420"></script>
+  <script src="competitor_data.js?v=4cfea982"></script>
+  <script src="competitor_app.js?v=199cfa60"></script>
 </body>
 </html>
