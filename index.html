@@ -6,7 +6,7 @@
   <meta name="description" content="洗护市场与竞品观察，整理公开资料、蝉妈妈导出和罗盘·策略月度榜单。">
   <title>洗护市场&amp;竞品看板</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230d2338'/%3E%3Cpath d='M12 43V20h8v23m9 0V30h8v13m9 0V12h8v31' stroke='%2347d2ad' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=0f9665fc">
+  <link rel="stylesheet" href="styles.css?v=383028c7">
 </head>
 <body>
   <div class="app-shell">
@@ -23,16 +23,17 @@
         <a href="#brand-analysis">品牌分析</a>
         <a href="#efficacy">功效与价格</a>
         <a href="#ranking">竞品样本</a>
+        <a href="#xhs-comments">小红书评论洞察</a>
         <a href="#sources">数据口径</a>
       </nav>
       <div class="sidebar-note"><span class="live-dot"></span>可分享观察版<br><small>基于您提供的文件生成</small></div>
     </aside>
 
     <main>
-      <header class="topbar"><div class="breadcrumb">抖音市场 <span>/</span> 洗护细分类目</div><div class="top-meta">资料整理于 2026.10.09 <span class="version">V15</span></div></header>
+      <header class="topbar"><div class="breadcrumb">洗护市场 <span>/</span> 细分类目</div><div class="top-meta">资料整理于 2026.10.10 <span class="version">V16</span></div></header>
       <div class="content">
         <section class="page-intro" id="overview">
-          <div><div class="eyebrow">市场与竞品 · 分类观察</div><h1>洗护市场&amp;竞品看板</h1><p>历史趋势、年度生态与罗盘市场榜单可切换细分类目；其他专题沿用原洗发水样本。不同来源的指数、销量区间与金额分开展示。</p></div>
+          <div><div class="eyebrow">市场与竞品 · 分类观察</div><h1>洗护市场&amp;竞品看板</h1><p>历史趋势、年度生态、罗盘市场榜单与小红书评论洞察可切换细分类目；其他专题沿用原洗发水样本。不同来源的指数、销量区间与金额分开展示。</p></div>
           <div class="period-card"><span>最长观察窗口</span><strong>370 天</strong><small>2025.10.01 — 2026.10.05</small></div>
         </section>
 
@@ -209,8 +210,22 @@
 
         </section>
 
+        <section class="section" id="xhs-comments" aria-labelledby="xhs-comments-title">
+          <div class="section-head"><div><span class="eyebrow">11 / 小红书评论洞察</span><h2 id="xhs-comments-title">评论中的洗护话题</h2></div><span class="source-pill">用户提供的三类目采集结果</span></div>
+          <div class="compass-category-bar xhs-category-bar"><label for="xhs-category">细分类目</label><select id="xhs-category" aria-label="选择小红书评论细分类目"></select><span id="xhs-period"></span></div>
+          <div class="scope-banner"><span class="scope-icon">i</span><span>以下分析只针对这三份关键词采集文件。先按评论 ID 在各文件内去重，再用评论文本中的洗护词筛出“明确相关评论”；未命中不等于无关。话题按关键词识别，一条评论可命中多个话题，不能解释为情绪、市场需求占比或产品功效。</span></div>
+          <div class="xhs-kpis" id="xhs-kpis"></div>
+          <div class="xhs-insight" id="xhs-insight"></div>
+          <div class="two-col xhs-analysis-grid">
+            <article class="panel"><div class="panel-head"><div><h3>明确相关评论中的话题提及</h3><p>多选标签 · 百分比以该类目明确相关评论为分母</p></div></div><div id="xhs-themes" class="xhs-themes"></div></article>
+            <article class="panel"><div class="panel-head"><div><h3>评论时间分布</h3><p>2026 年 4—9 月完整自然月 · 仅统计明确相关评论</p></div></div><div id="xhs-months" class="xhs-months"></div><div class="panel-foot">月份表示所采集评论的发布时间；采集笔记及评论范围不均衡，柱高不是平台整体讨论热度。</div></article>
+          </div>
+          <article class="panel xhs-posts-panel"><div class="panel-head"><div><h3>讨论集中的笔记</h3><p>按明确相关评论条数排序 · 链接指向原公开笔记，不展示评论者与原评论文本</p></div></div><div id="xhs-posts" class="xhs-posts"></div></article>
+          <div class="scope-banner competitor-audit"><span class="scope-icon">!</span><span>分类沿用原采集关键词，不重新判定每条笔记的商品类别；三类文件之间有 20 条相同评论 ID，因此不同类目的评论数不能直接相加为去重总量。来源是抽取样本，并非小红书全量评论。</span></div>
+        </section>
+
         <section class="section" id="sources" aria-labelledby="sources-title">
-          <div class="section-head"><div><span class="eyebrow">11 / 数据口径</span><h2 id="sources-title">数据口径</h2></div></div>
+          <div class="section-head"><div><span class="eyebrow">12 / 数据口径</span><h2 id="sources-title">数据口径</h2></div></div>
           <div class="provenance"><h3>来源与限制</h3><ul>
             <li><strong>年度生态：</strong>洗发水热度分析 PDF（原始文件未公开），2025.10.05–2026.10.05；另有洗发皂（原始文件未公开）、头皮护理精华（原始文件未公开）、护发素发膜（原始文件未公开）、护发精油（原始文件未公开）热度分析 PDF，均为 2025.10.08–2026.10.08。五份报告按各自关键词筛选前 2,000 商品，属于热度样本。</li>
             <li><strong>近一年带货趋势：</strong>飞瓜“洗发”热度导出 2025.10.01–2026.10.05，370 个连续自然日。367 天销售额封顶为“1000万+”，不可计算精确月 GMV；展示销售额下限、销量区间及每日活动数的逐月合计。</li>
@@ -220,6 +235,7 @@
             <li><strong>罗盘 Excel：</strong>用户提供 4—9 月品牌榜、商品榜各 6 份；每月品牌前 30、商品前 80。文件名只有月份，年份按资料上下文推定为 2026；工作簿未附筛选页面，商品标题单元格含原商品链接。商品榜大多是洗发水叶子类目，个别为相邻类目。</li>
             <li><strong>核心竞品逐日表：</strong>用户提供 20 个品牌的 365 天逐日销售额估算/合计文件；11 份 Excel、9 份 CSV。主口径单位万元；固然堂为洗发水线，故事树是 4 表逐日合并，其余品牌的商品覆盖范围未统一说明。月度比较仅用 2025 年 11 月至 2026 年 9 月完整自然月；此表不能证明成人洗发水全市场 GMV 或品牌份额。</li>
             <li><strong>竞品定位解析：</strong>用户提供《竞品拆解.xlsx》Sheet1 第 2—17 行，16 条商品记录、15 个品牌。仅合并“东方植萃养发”两种写法用于图表分组；商品卖点、背书、数据报告和直播话术为原表记录，未作独立验证。原始工作簿保存在本地 source 目录，不随分享页面公开。</li>
+            <li><strong>小红书评论洞察：</strong>用户提供洗发水、头皮护理、护发素发膜三份采集结果。评论按文件内 ID 去重，以评论文本命中洗护词作为“明确相关”筛选，再用固定关键词规则统计话题提及；一条可命中多个话题。公开页只含汇总计数和公开笔记标题，不含原评论、评论者或带访问令牌的源链接。</li>
             <li><strong>缺口：</strong>暂无可核实的成人洗发水全市场 GMV、同比/环比增长、商品实付均价和客单价。不同来源或口径的数据不相加。</li>
           </ul></div>
         </section>
@@ -239,5 +255,7 @@
   <script src="positioning_app.js?v=088d2e5c"></script>
   <script src="competitor_data.js?v=4cfea982"></script>
   <script src="competitor_app.js?v=199cfa60"></script>
+  <script src="xhs_comment_data.js?v=cccd3a4a"></script>
+  <script src="xhs_comment_app.js?v=d1819605"></script>
 </body>
 </html>
