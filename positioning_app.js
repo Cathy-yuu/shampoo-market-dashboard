@@ -20,6 +20,7 @@
   const colors = ['#178b86', '#5276c6', '#d79a52', '#866bb5', '#67a48f', '#bf7590', '#6f98b2'];
   const dimensions = {
     position: '产品定位 / 研究分组',
+    coreEfficacyGroups: '核心功效分组',
     sourceGroup: '原表板块',
     tag: '成分标签',
     sellingPointPosition: '直播间主讲卖点',
@@ -28,15 +29,22 @@
   };
   let selectedIndex = 0;
 
+  function categoriesOf(record, dimension) {
+    if (dimension === 'coreEfficacyGroups') return record.coreEfficacyGroups?.length
+      ? record.coreEfficacyGroups : ['未填写'];
+    return [record[dimension] || '未填写'];
+  }
+
   function valuesForDimension(dimension) {
-    const values = [...new Set(data.records.map(record => record[dimension] || '未填写'))];
+    const values = [...new Set(data.records.flatMap(record => categoriesOf(record, dimension)))];
     const prescribed = dimension === 'position' ? data.groups
+      : dimension === 'coreEfficacyGroups' ? data.coreEfficacyGroupOrder
       : dimension === 'sourceGroup' ? data.sourceGroups
       : dimension === 'sellingPointPosition' ? data.sellingPointGroups : null;
     return prescribed
       ? prescribed.filter(value => values.includes(value))
-      : values.sort((a, b) => data.records.filter(record => (record[dimension] || '未填写') === b).length
-        - data.records.filter(record => (record[dimension] || '未填写') === a).length || a.localeCompare(b, 'zh-CN'));
+      : values.sort((a, b) => data.records.filter(record => categoriesOf(record, dimension).includes(b)).length
+        - data.records.filter(record => categoriesOf(record, dimension).includes(a)).length || a.localeCompare(b, 'zh-CN'));
   }
 
   function refreshCategories() {
@@ -87,8 +95,9 @@
       <div class="panel-head positioning-detail-head"><div><span class="eyebrow">竞品资料详情 · ${esc(record.sourceSheet)}表第 ${record.sourceRow} 行</span><h3>${esc(record.displayName || record.brand)}</h3><p>${esc(record.position)} · 直播间主讲卖点：${esc(record.sellingPointPosition)}</p>${incomplete}</div>${productLink}</div>
       <div class="positioning-detail-grid">
         ${field('原表板块 / 成分标签', [record.sourceGroup, record.tag].filter(Boolean).join(' · '))}
-        ${record.rawPosition ? field('产品性质（原表记录）', record.rawPosition) : ''}
+        ${record.productTitle ? field('产品标题（原表记录）', record.productTitle) : ''}
         ${record.coreEfficacy ? field('核心功效（原表记录）', record.coreEfficacy) : ''}
+        ${field('核心功效分组', record.coreEfficacyGroups.join(' · '))}
         ${field('直播间主讲卖点（历史补充分组）', record.sellingPointPosition)}
         ${record.sellingPointDetail ? field('原指定说法', record.sellingPointDetail) : ''}
         ${record.sellingPointContext ? field('品牌层面卖点补充（用户指定）', record.sellingPointContext) : ''}
@@ -103,7 +112,7 @@
       </div>
       <details class="positioning-script"><summary>查看直播间话术框架</summary><p>${esc(record.liveScript)}</p></details>
       ${compassDetail(record.brand)}
-      <div class="panel-foot">产品性质与核心功效按最新竞品拆解表原字段展示；直播间主讲卖点沿用你此前补充的分类，未补充的新商品留空。罗盘品牌榜销售额仅按统一系数试算，不是实际成交额。</div>`;
+      <div class="panel-foot">核心功效保留最新竞品拆解表原文，功效分组按词语归类，同一商品可以属于多个分组。直播间主讲卖点沿用此前补充的分类。罗盘品牌榜销售额仅按统一系数试算，不是实际成交额。</div>`;
   }
 
   function renderMap() {
@@ -111,15 +120,15 @@
     const category = categorySelect.value;
     const groups = valuesForDimension(dimension)
       .filter(name => !category || name === category)
-      .map((name, index) => ({name, color: colors[index % colors.length], records: data.records.filter(record => (record[dimension] || '未填写') === name)}));
+      .map((name, index) => ({name, color: colors[index % colors.length], records: data.records.filter(record => categoriesOf(record, dimension).includes(name))}));
     const max = Math.max(1, ...groups.map(group => group.records.length));
-    const visibleRecords = groups.flatMap(group => group.records);
+    const visibleRecords = [...new Set(groups.flatMap(group => group.records))];
     kpis.innerHTML = [
       ['资料行', visibleRecords.length, `全部 ${data.records.length} 条`],
       ['品牌', new Set(visibleRecords.map(record => record.brand)).size, '按品牌名称去重'],
       ['商品链接', visibleRecords.filter(record => record.productUrl).length, '其余原表未填写'],
     ].map(([name, value, note]) => `<div><span>${esc(name)}</span><strong>${value}</strong><small>${esc(note)}</small></div>`).join('');
-    status.textContent = `${dimensions[dimension]} · ${category || '全部类别'} · ${visibleRecords.length} 条资料行`;
+    status.textContent = `${dimensions[dimension]} · ${category || '全部类别'} · ${visibleRecords.length} 条资料行${dimension === 'coreEfficacyGroups' ? '（商品可属于多个功效分组）' : ''}`;
     map.innerHTML = groups.map(group => `
       <div class="positioning-row">
         <div class="positioning-name"><i style="background:${group.color}"></i><strong>${esc(group.name)}</strong></div>
