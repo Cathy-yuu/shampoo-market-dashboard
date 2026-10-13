@@ -1,4 +1,4 @@
-/* Mode labels follow the user-supplied 竞品营销拆解.docx; figures remain source estimates or bands. */
+/* Mode labels follow the user-supplied 竞品营销拆解.docx and later user corrections; figures remain source estimates or bands. */
 window.MARKETING_PLAY_DATA = {
   source: '用户提供的《竞品营销拆解.docx》；逐日经营走势、商品定位及评价资料用于交叉观察',
   groups: [
@@ -14,7 +14,7 @@ window.MARKETING_PLAY_DATA = {
     {id:'gushishu', name:'明星背书 + 矩阵号自种草 + KOC', color:'#6a9b6e', brief:'故事树：代言、自有内容号和 KOC 视频。'},
     {id:'expertKoc', name:'科研人设直播 + KOC', color:'#3d79aa', brief:'初葵、科芮实验室：科研人设直播与 KOC 内容。'},
     {id:'hexi', name:'明星背书 + 自营矩阵', color:'#a76678', brief:'赫系：明星背书与官方直播矩阵。'},
-    {id:'aign', name:'商标授权铺货 + 存量衰退', color:'#7d8e56', brief:'爱兰歌娜：文档标题中的诊断，出货以视频和商品卡为主。'}
+    {id:'aign', name:'自营矩阵+koc海量分销', color:'#7d8e56', brief:'爱兰歌娜：自营矩阵承接，KOC 视频和商品卡分销。'}
   ],
   brands: [
     {name:'韩束', group:'hanShu', quadrant:'selfLive', engine:'自营直播＋央媒专场＋KOC', trust:'央媒合作', evidence:'央媒矩阵多场 100w+；主分销链 784 达人、2065 条视频；文档所列直播指数高于商品卡和视频。', advantage:'权威内容、直播成交与视频触达同时存在。', dependency:'多渠道归因和投放效率需分链核算。'},
@@ -34,6 +34,6 @@ window.MARKETING_PLAY_DATA = {
     {name:'丰添', group:'brand', quadrant:'creatorLive', engine:'央媒／头部专场＋KOC 旅行装', trust:'防脱证照及央媒合作', evidence:'达人专场链、预售链、KOC 旅行装链分开；约 40 条链接集中于官方旗舰店。', advantage:'按场景拆链，专业功效表达较聚焦。', dependency:'专场和预售波动较大，平销需另行核验。'},
     {name:'高缇雅', group:'gaotiya', quadrant:'selfLive', engine:'官方日播＋腰尾部达人直播', trust:'产品功效叙事', evidence:'官方直播间长时日播；老姜王分销链文档列 800 达人，腰尾部主播高频带货。', advantage:'不依赖单一头部达人，直播承接渠道较多。', dependency:'多个主播场次的复购和净利润尚无同口径数据。'},
     {name:'苗甄堂', group:'miaozhentang', quadrant:'selfLive', engine:'多店多号长时直播＋付费流量', trust:'直播间品牌叙事', evidence:'约 6 个账号、4 家小店；样本直播间付费流量占 82%—90%。', advantage:'账号与店铺分链运营，持续开播。', dependency:'付费流量依赖较高，利润和自然流量稳定性待核。'},
-    {name:'爱兰歌娜', group:'aign', quadrant:'creatorVideo', engine:'腰尾部 KOC 视频＋商品卡', trust:'多肽角蛋白等成分叙事', evidence:'主链 1029 达人、2382 条视频；文档样本中视频贡献高于商品卡和直播。', advantage:'低粉账号可规模化分发视频。', dependency:'授权店铺和多链接口径需核验；平销趋势需连续数据确认。'}
+    {name:'爱兰歌娜', group:'aign', quadrant:'creatorVideo', engine:'自营矩阵+koc海量分销', trust:'多肽角蛋白等成分叙事', evidence:'主链 1029 达人、2382 条视频；文档样本中视频贡献高于商品卡和直播。', advantage:'低粉账号可规模化分发视频。', dependency:'授权店铺和多链接口径需核验；平销趋势需连续数据确认。'}
   ]
 };
