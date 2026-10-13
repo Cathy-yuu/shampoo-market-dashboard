@@ -62,7 +62,7 @@
 
   function render() {
     const visible = matchingBrands();
-    status.textContent = `展示 ${visible.length} / ${data.brands.length} 个品牌 · ${new Set(visible.map(brand => brand.group)).size} 类主要玩法`;
+    status.textContent = `展示 ${visible.length} / ${data.brands.length} 个品牌 · ${new Set(visible.map(brand => brand.group)).size} 类主要模式`;
     root.innerHTML = `<div class="play-group-grid">${data.groups.map(group => {
       const members = visible.filter(brand => brand.group === group.id);
       if (!members.length) return '';
@@ -85,7 +85,7 @@
     const button = event.target.closest('[data-play-brand]');
     if (button) renderDetail(data.brands.find(brand => brand.name === button.dataset.playBrand));
   });
-  groupSelect.innerHTML = '<option value="">全部玩法</option>' + data.groups.map(group => `<option value="${group.id}">${esc(group.name)}</option>`).join('');
+  groupSelect.innerHTML = '<option value="">市场纵览</option>' + data.groups.map(group => `<option value="${group.id}">${esc(group.name)}</option>`).join('');
   groupSelect.addEventListener('change', render);
   searchInput.addEventListener('input', render);
   render();
