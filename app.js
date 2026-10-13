@@ -216,14 +216,6 @@
     }).join('') : '<p class="mix-empty">当前筛选没有可比较的上月商品记录。</p>';
   }
   // 罗盘细分类目交互由 compass_app.js 统一渲染。
-  set('adult-count', nf.format(data.sample.adultCandidates));
-  set('child-count', nf.format(data.sample.excludedChildrenByTitle));
-  set('bundle-count', nf.format(data.sample.possibleBundles));
-  bars('tag-bars', Object.entries(data.sample.tagCounts).sort((a,b)=>b[1]-a[1]), Math.max(...Object.values(data.sample.tagCounts)), '商品');
-  bars('sales-bands', Object.entries(data.sample.bandCounts), Math.max(...Object.values(data.sample.bandCounts)), '商品');
-  const efficacyFloor=Object.entries(data.feiguaAnnual.channels.efficacySalesFloor).sort((a,b)=>b[1].gmvFloor-a[1].gmvFloor);
-  const efficacyMax=Math.max(...efficacyFloor.map(([,value])=>value.gmvFloor));
-  $('efficacy-sales-floor').innerHTML=efficacyFloor.map(([tag,value])=>`<div class="bar-row" title="${esc(tag)}：${value.count} 个榜内商品，销售额至少 ${money(value.gmvFloor)}"><span class="bar-label">${esc(tag)}</span><span class="bar-track"><span class="bar-fill" style="width:${(value.gmvFloor/efficacyMax*100).toFixed(1)}%"></span></span><span class="bar-value">≥${money(value.gmvFloor)}</span></div>`).join('');
   Object.keys(data.sample.tagCounts).forEach(tag => $('tag-filter').insertAdjacentHTML('beforeend', `<option value="${esc(tag)}">${esc(tag)}</option>`));
   Object.keys(data.sample.bandCounts).forEach(band => $('band-filter').insertAdjacentHTML('beforeend', `<option value="${esc(band)}">${esc(band)}</option>`));
   let samplePage = 0;

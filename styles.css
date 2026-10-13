@@ -202,7 +202,14 @@
 .review-table a{color:#0b7d77;text-decoration:none;font-weight:700;white-space:nowrap}
 .review-table a:hover{text-decoration:underline}
 .review-table td:last-child span{color:#82939d;font-size:12px}
+.review-table tbody tr[hidden]{display:none}
+.review-pagination{display:flex;align-items:center;justify-content:center;gap:16px;padding:15px 0 2px;color:#607887;font-size:13px;border-top:1px solid #e9eef0}
+.review-pagination button{border:1px solid #9acabd;background:#eef9f5;color:#0b735f;font-weight:700;border-radius:7px;padding:8px 16px}
+.review-pagination button:hover:not(:disabled){background:#def1e9}
+.review-pagination button:disabled{opacity:.45;cursor:default}
+.review-pagination span{min-width:165px;text-align:center;font-variant-numeric:tabular-nums}
 .review-gap-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
 .review-gap-grid .panel{background:#fdfdfb}
 @media(max-width:900px){.review-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.review-insight-grid,.review-gap-grid{grid-template-columns:1fr}.review-kpis strong{font-size:23px}}
+@media(max-width:600px){.review-pagination{gap:8px}.review-pagination button{padding:7px 10px}.review-pagination span{min-width:130px;font-size:12px}}

@@ -6,7 +6,7 @@
   <meta name="description" content="洗护市场与竞品观察，整理公开资料、蝉妈妈导出和罗盘·策略月度榜单。">
   <title>洗护市场&amp;竞品看板</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230d2338'/%3E%3Cpath d='M12 43V20h8v23m9 0V30h8v13m9 0V12h8v31' stroke='%2347d2ad' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=629d63ab">
+  <link rel="stylesheet" href="styles.css?v=d2979ca0">
 </head>
 <body>
   <div class="app-shell">
@@ -19,14 +19,13 @@
         <a href="#client-relations">营销渠道分析</a>
         <a href="#brand-analysis">品牌分析</a>
         <a href="#core-competitors">竞品分析</a>
-        <a href="#efficacy">功效与价格</a>
         <a href="#product-reviews">商品评价分析</a>
       </nav>
       <div class="sidebar-note"><span class="live-dot"></span>可分享观察版<br><small>基于您提供的文件生成</small></div>
     </aside>
 
     <main>
-      <header class="topbar"><div class="breadcrumb">洗护市场 <span>/</span> 细分类目</div><div class="top-meta">资料整理于 2026.10.13 <span class="version">V19</span></div></header>
+      <header class="topbar"><div class="breadcrumb">洗护市场 <span>/</span> 细分类目</div><div class="top-meta">资料整理于 2026.10.13 <span class="version">V20</span></div></header>
       <div class="content">
         <section class="page-intro" id="overview">
           <div><div class="eyebrow">市场与竞品 · 分类观察</div><h1>洗护市场&amp;竞品看板</h1><p>历史趋势、年度生态、罗盘市场榜单与小红书评论洞察可切换细分类目；商品评价分析呈现抖音竞品阶段观察和小红书话题。不同来源的指数、销量区间与金额分开展示。</p></div>
@@ -196,21 +195,14 @@
           </section>
         </section>
 
-        <section class="section" id="efficacy" aria-labelledby="efficacy-title">
-          <div class="section-head"><div><span class="eyebrow">08 / 近 30 天样本</span><h2 id="efficacy-title">功效诉求与销量层级</h2></div><span class="source-pill">蝉妈妈商品榜 · 400 行原始记录</span></div>
-          <div class="sample-summary"><div><strong id="adult-count">—</strong><span>成人候选商品</span></div><div><strong id="child-count">—</strong><span>按标题排除儿童及青少年商品</span></div><div><strong id="bundle-count">—</strong><span>可能为洗护套装</span></div><p>标题关键词可以多选，因此各功效数量不能相加为商品总数。功效标签是商品宣称线索，尚未核验备案与实际功效。</p></div>
-          <div class="two-col"><article class="panel"><div class="panel-head"><div><h3>功效关键词覆盖</h3><p>近 30 天成人候选商品标题中的提及数</p></div></div><div class="bar-list teal" id="tag-bars"></div></article><article class="panel"><div class="panel-head"><div><h3>近 30 天销量区间</h3><p>只读取原始单元格中的区间部分</p></div></div><div class="bar-list" id="sales-bands"></div><div class="panel-foot">区间仅用于分层；表格尾随数字含义不明，没有参与统计。</div></article></div>
-          <div class="panel annual-efficacy"><div class="panel-head"><div><h3>功效关键词销售额下限排名</h3><p>近一年“洗发”前 2,000 商品；标题排除儿童词，按商品销售额区间下界排序</p></div></div><div id="efficacy-sales-floor" class="bar-list teal"></div><div class="panel-foot">同一商品可同时命中多个功效词，金额不可跨功效相加；“1000万+”按至少 1000 万计，排名是销售额下限排名，不代表真实销售额排名。与上方近 30 天提及数属于不同样本。<a href="feigua-efficacy-sales.csv">下载明细</a></div></div>
-        </section>
-
         <section class="section" id="ranking" aria-labelledby="ranking-title">
-          <div class="section-head"><div><span class="eyebrow">09 / 竞品样本</span><h2 id="ranking-title">商品样本清单</h2></div><span class="source-pill">销量区间 · 非精确销量</span></div>
+          <div class="section-head"><div><span class="eyebrow">08 / 竞品样本</span><h2 id="ranking-title">商品样本清单</h2></div><span class="source-pill">销量区间 · 非精确销量</span></div>
           <div class="panel table-panel"><div class="filters"><label class="search-wrap"><span class="sr-only">搜索品牌或商品</span><input id="search" type="search" placeholder="搜索品牌、商品名称或关键词"></label><label><span class="sr-only">功效筛选</span><select id="tag-filter"><option value="">全部功效</option></select></label><label><span class="sr-only">销量区间筛选</span><select id="band-filter"><option value="">全部销量区间</option></select></label><label><span class="sr-only">商品形式筛选</span><select id="bundle-filter"><option value="">全部商品形式</option><option value="single">未标记套装</option><option value="bundle">可能为套装</option></select></label></div><div class="table-status"><span id="filtered-count">—</span><span>品牌按商品标题识别、待复核；同名商品未合并</span></div><div class="table-scroll"><table><thead><tr><th>原榜排名</th><th>商品标题</th><th>品牌（标题识别）</th><th>近 30 天销量</th><th>功效线索</th><th>关联达人</th><th>关联视频</th></tr></thead><tbody id="product-rows"></tbody></table></div><div class="table-footer"><button id="sample-prev" type="button">上一页</button><span id="shown-count" aria-live="polite"></span><button id="sample-next" type="button">下一页</button></div></div>
 
         </section>
 
         <section class="section" id="product-reviews" aria-labelledby="product-reviews-title">
-          <div class="section-head"><div><span class="eyebrow">10 / 商品评价分析</span><h2 id="product-reviews-title">商品评价与消费者反馈</h2></div><span class="source-pill">抖音竞品评价 · 小红书评论</span></div>
+          <div class="section-head"><div><span class="eyebrow">09 / 商品评价分析</span><h2 id="product-reviews-title">商品评价与消费者反馈</h2></div><span class="source-pill">抖音竞品评价 · 小红书评论</span></div>
           <div class="review-subsection" id="douyin-reviews">
             <div class="section-head"><div><span class="eyebrow">抖音 · 洗发水竞品</span><h3>核心商品评价阶段观察</h3></div><span class="source-pill">采集于 2026.10.12—13</span></div>
             <div class="scope-banner"><span class="scope-icon">i</span><span>这份阶段底稿覆盖当时看板的 15 个品牌、16 条商品链接，<strong>不等于目前定位版图中的全部 27 条商品</strong>。其中 14 条找到标题或评价总量吻合的直播商品，直播页未显示商品 ID，仍属暂定匹配。下表“中差评占比”＝页面中差评计数 ÷ 页面评价总数，包含中评，且评论正文未逐条收齐；它不是纯差评率，也不是商品质量排名。</span></div>
@@ -222,7 +214,7 @@
               <article class="panel"><span class="review-insight-label">04 · 交易规则</span><h4>赠品、价差和退款争议</h4><p>试用装或赠品退货扣费、活动条件、跨渠道价差及补差规则反复出现。评论反映消费者理解和商家说明的差异，具体责任仍需订单证据核对。</p></article>
             </div>
             <article class="panel review-table-panel"><div class="panel-head"><div><h3>14 条暂定匹配商品的页面计数</h3><p>按页面“中差评占比”排列，仅作线索浏览；非纯差评率或品牌质量比较</p></div></div>
-              <div class="table-scroll"><table class="review-table"><thead><tr><th>品牌 / 商品</th><th>页面评价总数</th><th>页面中差评</th><th>占比约</th><th>首批可见线索</th><th>页面</th></tr></thead><tbody>
+              <div class="table-scroll"><table class="review-table"><thead><tr><th>品牌 / 商品</th><th>页面评价总数</th><th>页面中差评</th><th>占比约</th><th>首批可见线索</th><th>页面</th></tr></thead><tbody id="review-table-body">
                 <tr><td><strong>白云山</strong><small>二硫化硒去屑款</small></td><td>74.5 万</td><td>6.5 万</td><td>8.7%</td><td>漏液、赠品错漏、客服；功效负面线索较少</td><td><a href="https://live.douyin.com/160278419213" target="_blank" rel="noopener noreferrer">查看 ↗</a></td></tr>
                 <tr><td><strong>赫系</strong><small>轻盈洗护套装</small></td><td>36.0 万</td><td>2.9 万</td><td>8.1%</td><td>香味评价分化、漏液、退货承诺</td><td><a href="https://live.douyin.com/439728457101" target="_blank" rel="noopener noreferrer">查看 ↗</a></td></tr>
                 <tr><td><strong>高缇雅</strong><small>防脱洗发乳发膜套装</small></td><td>104.7 万</td><td>7.9 万</td><td>7.5%</td><td>包装、漏液、防脱体验；仅为可见线索</td><td><a href="https://live.douyin.com/30270599808" target="_blank" rel="noopener noreferrer">查看 ↗</a></td></tr>
@@ -238,6 +230,7 @@
                 <tr><td><strong>极方</strong><small>防脱控油款</small></td><td>3.4 万</td><td>1,231</td><td>3.6%</td><td>掉发体验、干涩、返油；干油性 SKU 混合</td><td><a href="https://live.douyin.com/314375076724" target="_blank" rel="noopener noreferrer">查看 ↗</a></td></tr>
                 <tr><td><strong>半亩花田</strong><small>晨露玫瑰控油蓬松款</small></td><td>21.1 万</td><td>6,041</td><td>2.9%</td><td>控油蓬松持续、干涩、泵头和赠品；去屑款单列</td><td><a href="https://live.douyin.com/784910952340" target="_blank" rel="noopener noreferrer">查看 ↗</a></td></tr>
               </tbody></table></div>
+              <div class="review-pagination"><button type="button" id="review-prev" aria-label="上一页商品评价">上一页</button><span id="review-page-status" aria-live="polite"></span><button type="button" id="review-next" aria-label="下一页商品评价">下一页</button></div>
               <div class="panel-foot">页面以“万”为单位的计数经过四舍五入，占比为近似值。评论池可能跨 SKU、套装和旧版，首批可见主题不是全量主题频次。表中“查看”指向直播间，直播商品可能变动；EHD“原商品”指向看板原链接。</div>
             </article>
             <div class="review-gap-grid"><article class="panel"><span class="review-insight-label">同款仍待匹配</span><h4>养元青</h4><p>看板原商品约 4.2 万条评价；已核对的官方直播商品评价数均未对上。同款中差评计数及正文暂不展示。</p></article><article class="panel"><span class="review-insight-label">同款仍待匹配</span><h4>Off&amp;Relax</h4><p>看板原商品约 4.8 万条评价；另找到的洗护套装约 1.9 万条评价、803 条中差评（约 4.2%），属于<strong>非同款旁证</strong>，不并入上表。</p></article></div>
@@ -259,7 +252,7 @@
         </section>
 
         <section class="section" id="sources" aria-labelledby="sources-title">
-          <div class="section-head"><div><span class="eyebrow">11 / 数据口径</span><h2 id="sources-title">数据口径</h2></div></div>
+          <div class="section-head"><div><span class="eyebrow">10 / 数据口径</span><h2 id="sources-title">数据口径</h2></div></div>
           <div class="provenance"><h3>来源与限制</h3><ul>
             <li><strong>年度生态：</strong>洗发水热度分析 PDF（原始文件未公开），2025.10.05–2026.10.05；另有洗发皂（原始文件未公开）、头皮护理精华（原始文件未公开）、护发素发膜（原始文件未公开）、护发精油（原始文件未公开）热度分析 PDF，均为 2025.10.08–2026.10.08。五份报告按各自关键词筛选前 2,000 商品，属于热度样本。</li>
             <li><strong>近一年带货趋势：</strong>飞瓜“洗发”热度导出 2025.10.01–2026.10.05，370 个连续自然日。367 天销售额封顶为“1000万+”，不可计算精确月 GMV；展示销售额下限、销量区间及每日活动数的逐月合计。</li>
@@ -283,7 +276,7 @@
   <script src="annual_ecology_data.js?v=874e9ee3"></script>
   <script src="creator_mix_category_data.js?v=f1b10af4"></script>
   <script src="compass_estimate.js?v=94c3fbc1"></script>
-  <script src="app.js?v=25d585d0"></script>
+  <script src="app.js?v=a060bdbb"></script>
   <script src="public_category_app.js?v=c86ffe5f"></script>
   <script src="compass_app.js?v=1b897d3e"></script>
   <script src="positioning_data.js?v=58da8662"></script>
@@ -292,5 +285,6 @@
   <script src="competitor_app.js?v=199cfa60"></script>
   <script src="xhs_comment_data.js?v=cccd3a4a"></script>
   <script src="xhs_comment_app.js?v=d1819605"></script>
+  <script src="review_pagination.js?v=b27042c9"></script>
 </body>
 </html>
