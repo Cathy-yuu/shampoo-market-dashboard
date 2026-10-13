@@ -6,7 +6,7 @@
   <meta name="description" content="洗护市场与竞品观察，整理公开资料、蝉妈妈导出和罗盘·策略月度榜单。">
   <title>洗护市场&amp;竞品看板</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230d2338'/%3E%3Cpath d='M12 43V20h8v23m9 0V30h8v13m9 0V12h8v31' stroke='%2347d2ad' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=383028c7">
+  <link rel="stylesheet" href="styles.css?v=0b037c56">
 </head>
 <body>
   <div class="app-shell">
@@ -15,16 +15,12 @@
       <div class="sidebar-label">工作区</div>
       <nav aria-label="页面导航">
         <a href="#overview" class="active">市场总览</a>
-        <a href="#history-2025">历史趋势</a>
         <a href="#compass">罗盘市场榜单</a>
         <a href="#client-relations">营销渠道分析</a>
-        <a href="#positioning">竞品定位解析</a>
-        <a href="#core-competitors">竞品营销拆解</a>
         <a href="#brand-analysis">品牌分析</a>
+        <a href="#core-competitors">竞品分析</a>
         <a href="#efficacy">功效与价格</a>
-        <a href="#ranking">竞品样本</a>
         <a href="#xhs-comments">小红书评论洞察</a>
-        <a href="#sources">数据口径</a>
       </nav>
       <div class="sidebar-note"><span class="live-dot"></span>可分享观察版<br><small>基于您提供的文件生成</small></div>
     </aside>
@@ -152,16 +148,30 @@
           <div class="panel-foot" id="creator-mix-audit">自营与达人关系只比较这两个可归属部分；商品卡占比单列，不与飞瓜年度销售额区间相加。</div>
         </section>
 
-        <section class="section" id="positioning" aria-labelledby="positioning-title">
-          <div class="section-head"><div><span class="eyebrow">06 / 竞品定位解析</span><h2 id="positioning-title">核心商品定位版图</h2></div><span class="source-pill">用户提供的《竞品拆解.xlsx》</span></div>
+        <section class="section" id="brand-analysis" aria-labelledby="brand-analysis-title">
+          <div class="section-head"><div><span class="eyebrow">06 / 品牌分析</span><h2 id="brand-analysis-title">品牌生态与定位</h2></div><span class="source-pill">82 个品牌分类表 × 罗盘 4—9 月榜单</span></div>
+          <div class="scope-banner"><span class="scope-icon">i</span><span>原表 82 个品牌：海外 17、老牌国货 9、新锐国货 18、白牌 38。核对品牌主体后暂归为海外 14、老牌国货 9、新锐国货 20、白牌待核 37、主体待核 2。品牌数量占比不是 GMV 份额；“白牌”尚未逐一核实商标和经营主体。</span></div>
+          <div class="brand-matrix" id="brand-matrix"></div>
+          <div class="two-col brand-analysis-panels">
+            <article class="panel"><div class="panel-head"><div><h3>海外品牌 · 上榜频次前 10</h3><p>下方显示近一年榜内销量最高档代表商品简称</p></div></div><div class="spotlight-grid" id="overseas-spotlight"></div><div class="panel-foot">销量为区间，同档商品无法判定精确高低；Fino 未进近一年商品榜，改用罗盘商品榜中的代表商品，无法做同口径销量比较。</div></article>
+            <article class="panel"><div class="panel-head"><div><h3>国货品牌 · 上榜频次前 10</h3><p>老牌与新锐国货；下方显示近一年榜内销量最高档代表商品简称</p></div></div><div class="spotlight-grid" id="domestic-spotlight"></div><div class="panel-foot">按罗盘 4—9 月品牌和商品榜行级频次排序；并列时以 9 月品牌榜名次决定先后。频次不是销售额或市场份额；代表商品销量为区间。</div></article>
+          </div>
+          <article class="panel white-tier-panel"><div class="panel-head"><div><h3>“白牌待核”活跃度分层</h3><p>按 4—9 月出现的月份数；低频不等于没有竞争力</p></div></div><div id="domestic-tiers" class="domestic-tiers"></div><div class="panel-foot">连续 6 个月有 12 个；3—5 个月有 13 个；1—2 个月有 12 个。用户所列“其余 30 个低频”与表格不符。</div></article>
+          <div class="panel brand-findings"><h3>核对后的结构线索</h3><ul><li>老牌与新锐国货共 29 个；白牌待核 37 个。仅可说明这 82 个样本的品牌数量结构，不说明销售主导权。</li><li>Off&amp;Relax 为珀莱雅旗下品牌；沙宣现归汉高；馥绿德雅归皮尔法伯；Fino 现由 FineToday 经营。</li><li>娜帕蒂卡、SAZA 的洗发水品牌主体仍待核；不能仅看海外名字或风格判断产地。</li><li>“海外新品没有机会”无法由 6 个月榜单证明，需更长的新品牌进入与销售表现数据。</li></ul><div class="panel-foot">查看分类核对说明（本地底稿）</div></div>
+        </section>
+
+        <section class="section competitor-analysis" id="core-competitors" aria-labelledby="core-competitors-title">
+          <div class="section-head"><div><span class="eyebrow">07 / 竞品分析</span><h2 id="core-competitors-title">竞品分析</h2></div></div>
+          <section class="competitor-subsection" id="positioning" aria-labelledby="positioning-title">
+          <div class="section-head"><div><span class="eyebrow">定位分析</span><h3 id="positioning-title">核心商品定位版图</h3></div><span class="source-pill">用户提供的《竞品拆解.xlsx》</span></div>
           <div class="scope-banner"><span class="scope-icon">i</span><span>以 16 条商品记录、15 个品牌展示产品定位、直播间主讲卖点、背书类型和渠道打法。直播间主讲卖点按你补充的逐商品标签呈现：半亩花田两个链接分别归“蓬松”和“养发根”，“清洁”作为品牌层面补充；“蓬松高颅顶”并入“蓬松”，“养发根（毛囊）”并入“养发根”；EHD 的产品定位归“科学控油防脱”。图中数量是样本商品数，并非市场份额。</span></div>
           <div id="positioning-kpis" class="positioning-kpis"></div>
           <article class="panel positioning-map-panel"><div class="panel-head"><div><h3>核心商品定位版图</h3><p>切换维度与类别；点击品牌查看商品详情及罗盘 4—9 月品牌金额指数</p></div><div class="positioning-controls"><label>定位维度 <select id="positioning-dimension"><option value="position">产品定位</option><option value="sellingPointPosition">直播间主讲卖点</option><option value="endorsementType">背书类型</option><option value="channelTactic">产品渠道打法</option></select></label><label>类别 <select id="positioning-category"></select></label></div></div><div id="positioning-map-status" class="positioning-map-status"></div><div id="positioning-map" class="positioning-map"></div></article>
           <article class="panel positioning-detail-panel" id="positioning-detail" aria-live="polite"></article>
         </section>
 
-        <section class="section" id="core-competitors" aria-labelledby="core-competitors-title">
-          <div class="section-head"><div><span class="eyebrow">07 / 竞品营销拆解</span><h2 id="core-competitors-title">二十个品牌的经营走势</h2></div><span class="source-pill">用户提供的逐日销售额表 · 2025.10—2026.10</span></div>
+          <section class="competitor-subsection" id="competitor-marketing" aria-labelledby="competitor-marketing-title">
+          <div class="section-head"><div><span class="eyebrow">营销分析</span><h3 id="competitor-marketing-title">二十个品牌的经营走势</h3></div><span class="source-pill">用户提供的逐日销售额表 · 2025.10—2026.10</span></div>
           <div class="scope-banner"><span class="scope-icon">i</span><span>以下金额均按来源表的<strong>逐日主口径估算值</strong>计算，单位为万元。11 个完整自然月用于月度趋势与环比；两端 10 月是不完整月份。固然堂仅覆盖“洗发水线”；故事树为 4 表逐日合并，未核实仅含洗发水；其他品牌的商品覆盖范围也未在表内统一定义。品牌间金额排名只作样本观察，不能解释为市场份额或精确 GMV。</span></div>
           <div class="competitor-kpis" id="competitor-kpis"></div>
           <article class="panel competitor-panel competitor-observe-panel">
@@ -183,35 +193,24 @@
           </div>
 
           <div class="scope-banner competitor-audit"><span class="scope-icon">!</span><span>数据核对：20 份表均为连续 365 天，无缺日、空值或负值。固然堂、小灵树、秀鹤颜、瑶品的“保守口径”分别有 40、1、1、2 天高于“主口径”，这些品牌只采用主口径，不展示保守区间。故事树仅有主口径；半亩花田和白云山取表内“当日汇总”列，避免重复累加分图数据。</span></div>
-        </section>
-
-        <section class="section" id="brand-analysis" aria-labelledby="brand-analysis-title">
-          <div class="section-head"><div><span class="eyebrow">08 / 品牌分析</span><h2 id="brand-analysis-title">品牌生态与定位</h2></div><span class="source-pill">82 个品牌分类表 × 罗盘 4—9 月榜单</span></div>
-          <div class="scope-banner"><span class="scope-icon">i</span><span>原表 82 个品牌：海外 17、老牌国货 9、新锐国货 18、白牌 38。核对品牌主体后暂归为海外 14、老牌国货 9、新锐国货 20、白牌待核 37、主体待核 2。品牌数量占比不是 GMV 份额；“白牌”尚未逐一核实商标和经营主体。</span></div>
-          <div class="brand-matrix" id="brand-matrix"></div>
-          <div class="two-col brand-analysis-panels">
-            <article class="panel"><div class="panel-head"><div><h3>海外品牌 · 上榜频次前 10</h3><p>下方显示近一年榜内销量最高档代表商品简称</p></div></div><div class="spotlight-grid" id="overseas-spotlight"></div><div class="panel-foot">销量为区间，同档商品无法判定精确高低；Fino 未进近一年商品榜，改用罗盘商品榜中的代表商品，无法做同口径销量比较。</div></article>
-            <article class="panel"><div class="panel-head"><div><h3>国货品牌 · 上榜频次前 10</h3><p>老牌与新锐国货；下方显示近一年榜内销量最高档代表商品简称</p></div></div><div class="spotlight-grid" id="domestic-spotlight"></div><div class="panel-foot">按罗盘 4—9 月品牌和商品榜行级频次排序；并列时以 9 月品牌榜名次决定先后。频次不是销售额或市场份额；代表商品销量为区间。</div></article>
-          </div>
-          <article class="panel white-tier-panel"><div class="panel-head"><div><h3>“白牌待核”活跃度分层</h3><p>按 4—9 月出现的月份数；低频不等于没有竞争力</p></div></div><div id="domestic-tiers" class="domestic-tiers"></div><div class="panel-foot">连续 6 个月有 12 个；3—5 个月有 13 个；1—2 个月有 12 个。用户所列“其余 30 个低频”与表格不符。</div></article>
-          <div class="panel brand-findings"><h3>核对后的结构线索</h3><ul><li>老牌与新锐国货共 29 个；白牌待核 37 个。仅可说明这 82 个样本的品牌数量结构，不说明销售主导权。</li><li>Off&amp;Relax 为珀莱雅旗下品牌；沙宣现归汉高；馥绿德雅归皮尔法伯；Fino 现由 FineToday 经营。</li><li>娜帕蒂卡、SAZA 的洗发水品牌主体仍待核；不能仅看海外名字或风格判断产地。</li><li>“海外新品没有机会”无法由 6 个月榜单证明，需更长的新品牌进入与销售表现数据。</li></ul><div class="panel-foot">查看分类核对说明（本地底稿）</div></div>
+          </section>
         </section>
 
         <section class="section" id="efficacy" aria-labelledby="efficacy-title">
-          <div class="section-head"><div><span class="eyebrow">09 / 近 30 天样本</span><h2 id="efficacy-title">功效诉求与销量层级</h2></div><span class="source-pill">蝉妈妈商品榜 · 400 行原始记录</span></div>
+          <div class="section-head"><div><span class="eyebrow">08 / 近 30 天样本</span><h2 id="efficacy-title">功效诉求与销量层级</h2></div><span class="source-pill">蝉妈妈商品榜 · 400 行原始记录</span></div>
           <div class="sample-summary"><div><strong id="adult-count">—</strong><span>成人候选商品</span></div><div><strong id="child-count">—</strong><span>按标题排除儿童及青少年商品</span></div><div><strong id="bundle-count">—</strong><span>可能为洗护套装</span></div><p>标题关键词可以多选，因此各功效数量不能相加为商品总数。功效标签是商品宣称线索，尚未核验备案与实际功效。</p></div>
           <div class="two-col"><article class="panel"><div class="panel-head"><div><h3>功效关键词覆盖</h3><p>近 30 天成人候选商品标题中的提及数</p></div></div><div class="bar-list teal" id="tag-bars"></div></article><article class="panel"><div class="panel-head"><div><h3>近 30 天销量区间</h3><p>只读取原始单元格中的区间部分</p></div></div><div class="bar-list" id="sales-bands"></div><div class="panel-foot">区间仅用于分层；表格尾随数字含义不明，没有参与统计。</div></article></div>
           <div class="panel annual-efficacy"><div class="panel-head"><div><h3>功效关键词销售额下限排名</h3><p>近一年“洗发”前 2,000 商品；标题排除儿童词，按商品销售额区间下界排序</p></div></div><div id="efficacy-sales-floor" class="bar-list teal"></div><div class="panel-foot">同一商品可同时命中多个功效词，金额不可跨功效相加；“1000万+”按至少 1000 万计，排名是销售额下限排名，不代表真实销售额排名。与上方近 30 天提及数属于不同样本。<a href="feigua-efficacy-sales.csv">下载明细</a></div></div>
         </section>
 
         <section class="section" id="ranking" aria-labelledby="ranking-title">
-          <div class="section-head"><div><span class="eyebrow">10 / 竞品样本</span><h2 id="ranking-title">商品样本清单</h2></div><span class="source-pill">销量区间 · 非精确销量</span></div>
+          <div class="section-head"><div><span class="eyebrow">09 / 竞品样本</span><h2 id="ranking-title">商品样本清单</h2></div><span class="source-pill">销量区间 · 非精确销量</span></div>
           <div class="panel table-panel"><div class="filters"><label class="search-wrap"><span class="sr-only">搜索品牌或商品</span><input id="search" type="search" placeholder="搜索品牌、商品名称或关键词"></label><label><span class="sr-only">功效筛选</span><select id="tag-filter"><option value="">全部功效</option></select></label><label><span class="sr-only">销量区间筛选</span><select id="band-filter"><option value="">全部销量区间</option></select></label><label><span class="sr-only">商品形式筛选</span><select id="bundle-filter"><option value="">全部商品形式</option><option value="single">未标记套装</option><option value="bundle">可能为套装</option></select></label></div><div class="table-status"><span id="filtered-count">—</span><span>品牌按商品标题识别、待复核；同名商品未合并</span></div><div class="table-scroll"><table><thead><tr><th>原榜排名</th><th>商品标题</th><th>品牌（标题识别）</th><th>近 30 天销量</th><th>功效线索</th><th>关联达人</th><th>关联视频</th></tr></thead><tbody id="product-rows"></tbody></table></div><div class="table-footer"><button id="sample-prev" type="button">上一页</button><span id="shown-count" aria-live="polite"></span><button id="sample-next" type="button">下一页</button></div></div>
 
         </section>
 
         <section class="section" id="xhs-comments" aria-labelledby="xhs-comments-title">
-          <div class="section-head"><div><span class="eyebrow">11 / 小红书评论洞察</span><h2 id="xhs-comments-title">评论中的洗护话题</h2></div><span class="source-pill">用户提供的三类目采集结果</span></div>
+          <div class="section-head"><div><span class="eyebrow">10 / 小红书评论洞察</span><h2 id="xhs-comments-title">评论中的洗护话题</h2></div><span class="source-pill">用户提供的三类目采集结果</span></div>
           <div class="compass-category-bar xhs-category-bar"><label for="xhs-category">细分类目</label><select id="xhs-category" aria-label="选择小红书评论细分类目"></select><span id="xhs-period"></span></div>
           <div class="scope-banner"><span class="scope-icon">i</span><span>以下分析只针对这三份关键词采集文件。先按评论 ID 在各文件内去重，再用评论文本中的洗护词筛出“明确相关评论”；未命中不等于无关。话题按关键词识别，一条评论可命中多个话题，不能解释为情绪、市场需求占比或产品功效。</span></div>
           <div class="xhs-kpis" id="xhs-kpis"></div>
@@ -225,7 +224,7 @@
         </section>
 
         <section class="section" id="sources" aria-labelledby="sources-title">
-          <div class="section-head"><div><span class="eyebrow">12 / 数据口径</span><h2 id="sources-title">数据口径</h2></div></div>
+          <div class="section-head"><div><span class="eyebrow">11 / 数据口径</span><h2 id="sources-title">数据口径</h2></div></div>
           <div class="provenance"><h3>来源与限制</h3><ul>
             <li><strong>年度生态：</strong>洗发水热度分析 PDF（原始文件未公开），2025.10.05–2026.10.05；另有洗发皂（原始文件未公开）、头皮护理精华（原始文件未公开）、护发素发膜（原始文件未公开）、护发精油（原始文件未公开）热度分析 PDF，均为 2025.10.08–2026.10.08。五份报告按各自关键词筛选前 2,000 商品，属于热度样本。</li>
             <li><strong>近一年带货趋势：</strong>飞瓜“洗发”热度导出 2025.10.01–2026.10.05，370 个连续自然日。367 天销售额封顶为“1000万+”，不可计算精确月 GMV；展示销售额下限、销量区间及每日活动数的逐月合计。</li>
