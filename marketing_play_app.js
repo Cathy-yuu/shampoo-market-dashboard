@@ -11,7 +11,12 @@
   const status = document.querySelector('#marketing-play-status');
   const detail = document.querySelector('#marketing-play-detail');
   const tableBody = document.querySelector('#marketing-play-table');
+  const previousPage = document.querySelector('#marketing-play-prev');
+  const nextPage = document.querySelector('#marketing-play-next');
+  const pageLabel = document.querySelector('#marketing-play-page');
+  const pageSize = 5;
   let activeBrand = data.brands[0].name;
+  let tablePage = 0;
 
   const quarters = [
     {id:'selfLive', label:'自营直播为主要成交', sub:'配合专场、代言或付费流量'},
@@ -62,7 +67,7 @@
 
   function render() {
     const visible = matchingBrands();
-    status.textContent = `展示 ${visible.length} / ${data.brands.length} 个品牌 · ${new Set(visible.map(brand => brand.group)).size} 类主要模式`;
+    status.textContent = `展示 ${visible.length} / ${data.brands.length} 个品牌 · ${new Set(visible.map(brand => brand.group)).size} 类文档模式`;
     root.innerHTML = `<div class="play-group-grid">${data.groups.map(group => {
       const members = visible.filter(brand => brand.group === group.id);
       if (!members.length) return '';
@@ -71,7 +76,13 @@
       <div class="play-axis-top">主要转化路径：左侧偏自营　→　右侧偏外部达人</div>
       <div class="play-quadrant-grid">${quarters.map(quarter => `<div class="play-quadrant-cell"><strong>${esc(quarter.label)}</strong><small>${esc(quarter.sub)}</small><div class="play-chip-list">${visible.filter(brand => brand.quadrant === quarter.id).map(brandButton).join('') || '<span class="play-empty">当前筛选无品牌</span>'}</div></div>`).join('')}</div>
       <div class="play-axis-bottom">上排以直播为主要成交　/　下排更倚重视频内容或商品卡</div></div>`;
-    tableBody.innerHTML = visible.map(brand => `<tr data-play-row="${esc(brand.name)}"><td><button type="button" class="play-table-brand" data-play-brand="${esc(brand.name)}">${esc(brand.name)}</button></td><td><span class="play-group-dot" style="background:${groupById[brand.group].color}"></span>${esc(groupById[brand.group].name)}</td><td>${esc(brand.engine)}</td><td>${esc(brand.trust)}</td><td>${salesContext(brand.name)}</td></tr>`).join('') || '<tr><td colspan="5" class="play-empty-row">没有匹配的品牌</td></tr>';
+    const pageCount = Math.max(1, Math.ceil(visible.length / pageSize));
+    tablePage = Math.min(tablePage, pageCount - 1);
+    const pageBrands = visible.slice(tablePage * pageSize, (tablePage + 1) * pageSize);
+    tableBody.innerHTML = pageBrands.map(brand => `<tr data-play-row="${esc(brand.name)}"><td><button type="button" class="play-table-brand" data-play-brand="${esc(brand.name)}">${esc(brand.name)}</button></td><td><span class="play-group-dot" style="background:${groupById[brand.group].color}"></span>${esc(groupById[brand.group].name)}</td><td>${esc(brand.engine)}</td><td>${esc(brand.trust)}</td><td>${salesContext(brand.name)}</td></tr>`).join('') || '<tr><td colspan="5" class="play-empty-row">没有匹配的品牌</td></tr>';
+    pageLabel.textContent = `第 ${tablePage + 1} / ${pageCount} 页 · 共 ${visible.length} 个品牌`;
+    previousPage.disabled = tablePage === 0;
+    nextPage.disabled = tablePage >= pageCount - 1;
     const selection = visible.find(brand => brand.name === activeBrand) || visible[0];
     if (selection) renderDetail(selection);
     else detail.innerHTML = '<p>没有匹配的品牌，请调整筛选条件。</p>';
@@ -86,7 +97,9 @@
     if (button) renderDetail(data.brands.find(brand => brand.name === button.dataset.playBrand));
   });
   groupSelect.innerHTML = '<option value="">市场纵览</option>' + data.groups.map(group => `<option value="${group.id}">${esc(group.name)}</option>`).join('');
-  groupSelect.addEventListener('change', render);
-  searchInput.addEventListener('input', render);
+  groupSelect.addEventListener('change', () => { tablePage = 0; render(); });
+  searchInput.addEventListener('input', () => { tablePage = 0; render(); });
+  previousPage.addEventListener('click', () => { if (tablePage > 0) { tablePage--; render(); } });
+  nextPage.addEventListener('click', () => { tablePage++; render(); });
   render();
 })();
