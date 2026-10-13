@@ -19,7 +19,9 @@
   const estimate = window.COMPASS_ESTIMATE;
   const colors = ['#178b86', '#5276c6', '#d79a52', '#866bb5', '#67a48f', '#bf7590', '#6f98b2'];
   const dimensions = {
-    position: '产品定位',
+    position: '产品定位 / 研究分组',
+    sourceGroup: '原表板块',
+    tag: '成分标签',
     sellingPointPosition: '直播间主讲卖点',
     endorsementType: '背书类型',
     channelTactic: '产品渠道打法',
@@ -29,6 +31,7 @@
   function valuesForDimension(dimension) {
     const values = [...new Set(data.records.map(record => record[dimension] || '未填写'))];
     const prescribed = dimension === 'position' ? data.groups
+      : dimension === 'sourceGroup' ? data.sourceGroups
       : dimension === 'sellingPointPosition' ? data.sellingPointGroups : null;
     return prescribed
       ? prescribed.filter(value => values.includes(value))
@@ -78,12 +81,15 @@
     });
     const productLink = record.productUrl
       ? `<a class="positioning-product-link" href="${esc(record.productUrl)}" target="_blank" rel="noopener noreferrer">查看原表商品链接 ↗</a>` : '';
-    const correction = record.positionAdjusted
-      ? `<p class="positioning-correction">展示分类按你的要求调整为“${esc(record.position)}”；原表产品性质为“${esc(record.rawPosition)}”。</p>` : '';
+    const incomplete = !record.productUrl
+      ? '<p class="positioning-correction">原表这一行未填写商品链接；商品资料按已填写字段展示。</p>' : '';
     detail.innerHTML = `
-      <div class="panel-head positioning-detail-head"><div><span class="eyebrow">商品定位详情 · 来源表第 ${record.sourceRow} 行</span><h3>${esc(record.brand)}</h3><p>${esc(record.position)} · 直播间主讲卖点：${esc(record.sellingPointPosition)}</p>${correction}</div>${productLink}</div>
+      <div class="panel-head positioning-detail-head"><div><span class="eyebrow">竞品资料详情 · ${esc(record.sourceSheet)}表第 ${record.sourceRow} 行</span><h3>${esc(record.displayName || record.brand)}</h3><p>${esc(record.position)} · 直播间主讲卖点：${esc(record.sellingPointPosition)}</p>${incomplete}</div>${productLink}</div>
       <div class="positioning-detail-grid">
-        ${field('直播间主讲卖点（用户指定）', record.sellingPointPosition)}
+        ${field('原表板块 / 成分标签', [record.sourceGroup, record.tag].filter(Boolean).join(' · '))}
+        ${record.rawPosition ? field('产品性质（原表记录）', record.rawPosition) : ''}
+        ${record.coreEfficacy ? field('核心功效（原表记录）', record.coreEfficacy) : ''}
+        ${field('直播间主讲卖点（历史补充分组）', record.sellingPointPosition)}
         ${record.sellingPointDetail ? field('原指定说法', record.sellingPointDetail) : ''}
         ${record.sellingPointContext ? field('品牌层面卖点补充（用户指定）', record.sellingPointContext) : ''}
         ${field('核心卖点（原表记录）', record.sellingPoints)}
@@ -97,7 +103,7 @@
       </div>
       <details class="positioning-script"><summary>查看直播间话术框架</summary><p>${esc(record.liveScript)}</p></details>
       ${compassDetail(record.brand)}
-      <div class="panel-foot">直播间主讲卖点与 EHD 分类按你的补充展示；其余定位与营销说法来自竞品拆解表。罗盘品牌榜的销售额估算仅按统一系数试算，不是实际人民币成交额。</div>`;
+      <div class="panel-foot">产品性质与核心功效按最新竞品拆解表原字段展示；直播间主讲卖点沿用你此前补充的分类，未补充的新商品留空。罗盘品牌榜销售额仅按统一系数试算，不是实际成交额。</div>`;
   }
 
   function renderMap() {
@@ -109,22 +115,22 @@
     const max = Math.max(1, ...groups.map(group => group.records.length));
     const visibleRecords = groups.flatMap(group => group.records);
     kpis.innerHTML = [
-      ['商品记录', visibleRecords.length, `全部样本 ${data.records.length} 条`],
+      ['资料行', visibleRecords.length, `全部 ${data.records.length} 条`],
       ['品牌', new Set(visibleRecords.map(record => record.brand)).size, '按品牌名称去重'],
-      ['当前类别', groups.length, dimensions[dimension]],
+      ['商品链接', visibleRecords.filter(record => record.productUrl).length, '其余原表未填写'],
     ].map(([name, value, note]) => `<div><span>${esc(name)}</span><strong>${value}</strong><small>${esc(note)}</small></div>`).join('');
-    status.textContent = `${dimensions[dimension]} · ${category || '全部类别'} · ${visibleRecords.length} 条商品记录`;
+    status.textContent = `${dimensions[dimension]} · ${category || '全部类别'} · ${visibleRecords.length} 条资料行`;
     map.innerHTML = groups.map(group => `
       <div class="positioning-row">
         <div class="positioning-name"><i style="background:${group.color}"></i><strong>${esc(group.name)}</strong></div>
         <div class="positioning-content">
-          <div class="positioning-track" aria-label="${esc(group.name)}：${group.records.length} 条商品记录"><span style="width:${(group.records.length/max*100).toFixed(1)}%;background:${group.color}"></span></div>
+          <div class="positioning-track" aria-label="${esc(group.name)}：${group.records.length} 条资料行"><span style="width:${(group.records.length/max*100).toFixed(1)}%;background:${group.color}"></span></div>
           <div class="positioning-brands">${group.records.map(record => {
             const index = data.records.indexOf(record);
-            return `<button type="button" data-position-index="${index}" title="查看${esc(record.brand)}的定位及罗盘数据">${esc(record.brand)}</button>`;
+            return `<button type="button" data-position-index="${index}" title="查看${esc(record.displayName || record.brand)}的资料及罗盘数据">${esc(record.displayName || record.brand)}</button>`;
           }).join('')}</div>
         </div>
-        <div class="positioning-count"><strong>${group.records.length}</strong><span>款</span></div>
+        <div class="positioning-count"><strong>${group.records.length}</strong><span>条</span></div>
       </div>`).join('');
     if (!visibleRecords.some(record => data.records.indexOf(record) === selectedIndex)) {
       selectedIndex = data.records.indexOf(visibleRecords[0]);
