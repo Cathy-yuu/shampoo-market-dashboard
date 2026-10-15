@@ -6,7 +6,7 @@
   <meta name="description" content="洗护市场与竞品观察，整理公开资料、蝉妈妈导出和罗盘·策略月度榜单。">
   <title>洗护市场&amp;竞品看板</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230d2338'/%3E%3Cpath d='M12 43V20h8v23m9 0V30h8v13m9 0V12h8v31' stroke='%2347d2ad' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=84c58de8">
+  <link rel="stylesheet" href="styles.css?v=d7ad453b">
 </head>
 <body>
   <div class="app-shell">
@@ -33,14 +33,21 @@
       <header class="topbar"><div class="breadcrumb">洗护市场 <span>/</span> 细分类目</div><div class="top-meta">资料整理于 2026.10.15 <span class="version">V34</span></div></header>
       <div class="content">
         <section class="page-intro" id="overview">
-          <div><div class="eyebrow">市场与竞品 · 分类观察</div><h1>洗护市场&amp;竞品看板</h1><p>历史趋势、年度生态、罗盘市场榜单与小红书评论洞察可切换细分类目；商品评价分析呈现抖音竞品阶段观察和小红书话题。不同来源的指数、销量区间与金额分开展示。</p></div>
+          <div><div class="eyebrow">市场与竞品 · 分类观察</div><h1>洗护市场&amp;竞品看板</h1><p>全平台看板按京东、淘天、抖音与视频号分别展示；历史趋势、年度生态、罗盘市场榜单与小红书评论洞察可切换细分类目。不同来源的指数、销量区间与金额分开展示。</p></div>
           <div class="period-card"><span>最长观察窗口</span><strong>370 天</strong><small>2025.10.01 — 2026.10.05</small></div>
         </section>
 
         <div class="scope-banner"><span class="scope-icon">i</span><span><strong>先看口径：</strong>年度生态使用蝉妈妈不同关键词的商品热度样本，可能包含儿童、套装或跨类目商品；近 30 天洗发水榜单另按标题中的儿童、婴幼儿及青少年词初筛。两类样本均不能代表细分类目全市场 GMV。</span></div>
 
+        <section class="section all-platform-board" id="all-platform-board" aria-labelledby="all-platform-title">
+          <div class="section-head"><div><span class="eyebrow">01 / 全平台看板</span><h2 id="all-platform-title">洗发护发美发 · 平台销售榜单</h2></div><span class="source-pill">用户提供截图 · 2026H1</span></div>
+          <p class="all-platform-lede">京东、淘天、抖音品牌 TOP20 与视频号细分类目表现 · 每张榜单每页 5 条</p>
+          <div class="scope-banner"><span class="scope-icon">i</span><span>三张品牌榜按各平台截图分别排名；“市场份额”为平台内占比，不是跨平台合并销售额。视频号截图只有类目数据，没有品牌 TOP20。四张截图均标示为 2026 年 1—6 月，不能据此合成跨平台品牌销售额总榜。淘天第 8 名品牌字样较模糊，暂标“待核”。</span></div>
+          <div id="all-platform-platforms" class="all-platform-grid"></div>
+        </section>
+
         <section class="section" id="history-2025" aria-labelledby="history-2025-title">
-          <div class="section-head"><div><span class="eyebrow">01 / 历史趋势</span><h2 id="history-2025-title">市场规模与品牌历史参考</h2></div><span class="source-pill">公开报告 · 2025—2026</span></div>
+          <div class="section-head"><div><span class="eyebrow">02 / 历史趋势</span><h2 id="history-2025-title">市场规模与品牌历史参考</h2></div><span class="source-pill">公开报告 · 2025—2026</span></div>
           <div class="public-category-section">
             <div class="section-head"><div><span class="eyebrow">细分类目 · 公开资料</span><h2>2025 历史与 2026 进展</h2></div><span class="source-pill">选择类目查看 · 金额为人民币</span></div>
             <div class="scope-banner"><span class="scope-icon">i</span><span>2025 全年、2026 上半年、滚动 12 个月和单月数据分别标示。护发素/发膜在部分平台榜单中为合并类目；头皮精华也不等于全部头皮护理。</span></div>
@@ -76,7 +83,7 @@
         </section>
 
         <section class="section" id="annual" aria-labelledby="annual-title">
-          <div class="section-head"><div><span class="eyebrow">02 / 年度生态</span><h2 id="annual-title">规模结构与经营方式</h2></div><span class="source-pill" id="annual-source-pill">蝉妈妈热度分析 · 近一年</span></div>
+          <div class="section-head"><div><span class="eyebrow">03 / 年度生态</span><h2 id="annual-title">规模结构与经营方式</h2></div><span class="source-pill" id="annual-source-pill">蝉妈妈热度分析 · 近一年</span></div>
           <div id="annual-category-filters" class="public-category-filters" role="group" aria-label="筛选年度生态细分类目"></div>
           <div class="scope-banner annual-category-note" id="annual-category-note"></div>
           <div class="kpi-grid">
@@ -93,7 +100,7 @@
         </section>
 
         <section class="section" id="monthly" aria-labelledby="monthly-title">
-          <div class="section-head"><div><span class="eyebrow">03 / 近一年走势</span><h2 id="monthly-title">跨年连续观察</h2></div><span class="source-pill">2025.10—2026.10 · 不同口径分开展示</span></div>
+          <div class="section-head"><div><span class="eyebrow">04 / 近一年走势</span><h2 id="monthly-title">跨年连续观察</h2></div><span class="source-pill">2025.10—2026.10 · 不同口径分开展示</span></div>
           <div class="panel monthly-empty" id="monthly-empty"><strong>近一年新增每日带货活动趋势；GMV 仍不能逐月精确计算</strong><p>新导出的“洗发”热度趋势覆盖 2025.10.01—2026.10.05 共 370 天，其中 367 天销售额仅显示“1000万+”。因此下方用每日带货商品、视频、直播和品牌数量绘制趋势；这些是活动数量，不是成交额。罗盘 4—9 月仍为另一口径的榜单指数。</p>查看精确月度成交额模板（公开版不提供下载）</div>
           <div class="panel annual-trend-panel"><div class="panel-head"><div><h3>近一年“洗发”成交趋势 · 区间</h3><p>2025 年 10 月—2026 年 9 月，12 个完整自然月</p></div></div><div id="annual-trend-summary" class="trend-summary"></div><div class="chart-title">每月销售额下限 · “1000万+”按至少 1000 万计</div><div id="annual-gmv-chart" class="annual-svg-chart"></div><div class="chart-title">每月销量区间 · 累加每日展示区间</div><div id="annual-unit-chart" class="annual-svg-chart"></div><div class="panel-foot">销售额柱子只表示最低可能值，实际值可能高得多；不能称为月 GMV 或据此算增速。销量上下限为展示区间相加，也非精确销量。2026 年 10 月仅 5 天，未绘入月度图；不能用 2025 全年公开市场规模反推这份不同时间与关键词样本的逐月实付金额。</div></div>
           <div class="panel annual-trend-panel"><div class="panel-head"><div><h3>直播与视频带货活动量 · 逐月</h3><p>12 个完整自然月；数值为每日导出活动数的月度合计，并非去重视频/直播</p></div></div><div id="format-trend-line" class="annual-svg-chart"></div><div class="panel-foot">2026 年 10 月仅有前 5 天，未绘入月度图。活动数量变化不代表销售额或渠道份额变化。</div></div>
@@ -103,7 +110,7 @@
         </section>
 
         <section class="section" id="compass" aria-labelledby="compass-title">
-          <div class="section-head"><div><span class="eyebrow">04 / 罗盘月度分析</span><h2 id="compass-title">洗发水榜单 · 4—9 月</h2></div><span class="source-pill" id="compass-source-pill">罗盘·策略 · 品牌榜与商品榜</span></div>
+          <div class="section-head"><div><span class="eyebrow">05 / 罗盘月度分析</span><h2 id="compass-title">洗发水榜单 · 4—9 月</h2></div><span class="source-pill" id="compass-source-pill">罗盘·策略 · 品牌榜与商品榜</span></div>
           <div class="compass-category-bar"><label for="compass-category">细分类目</label><select id="compass-category" aria-label="选择罗盘细分类目"><option value="shampoo">洗发水</option><option value="shampoo_bar">洗发皂</option><option value="scalp_care">头皮护理</option><option value="conditioner_mask">护发素发膜</option><option value="hair_oil">护发精油</option></select><span id="compass-category-coverage">2026 年 4—9 月 · 罗盘月榜</span></div>
           <div class="scope-banner"><span class="scope-icon">i</span><span id="compass-scope-note">本节集中展示罗盘 4—9 月的品牌趋势和商品指数变动。销售额估算统一按金额指数 × 93.47 元／点试算，并非罗盘实际成交额；年份按资料上下文推定为 2026。</span></div>
           <div class="panel export-overview" id="compass-export"><div class="panel-head"><div><h3 id="compass-overview-title">罗盘洗发水导出榜 · 4—9 月</h3><p id="compass-overview-subtitle">品牌、商品与对应指数集中展示；各月榜单条数以原文件为准</p></div><span class="source-pill" id="compass-file-count">12 份 Excel · 月份由文件名标注</span></div><div class="export-kpis" id="export-kpis"></div><div class="panel-foot" id="compass-overview-note">工作簿未写年份、页面筛选条件或人民币金额；年份按本次资料上下文推定为 2026。品牌榜未排除儿童商品，商品榜下方可按标题和叶子类目初筛。核对说明（本地底稿） · <a href="compass-brand-index.csv">下载品牌趋势</a> · <a href="compass-product-records.csv">下载商品全榜</a></div></div>
@@ -138,7 +145,7 @@
         </section>
 
         <section class="section" id="client-relations" aria-labelledby="client-relations-title">
-          <div class="section-head"><div><span class="eyebrow">05 / 营销渠道分析</span><h2 id="client-relations-title">自营、达人与商品卡</h2></div><span class="source-pill">用户补充的品牌成交占比</span></div>
+          <div class="section-head"><div><span class="eyebrow">06 / 营销渠道分析</span><h2 id="client-relations-title">自营、达人与商品卡</h2></div><span class="source-pill">用户补充的品牌成交占比</span></div>
           <div id="creator-mix-category-filters" class="public-category-filters" role="group" aria-label="筛选营销渠道分析类目"></div>
           <div class="scope-banner"><span class="scope-icon">i</span><span id="creator-mix-status">正在核对品牌占比。</span></div>
           <div id="creator-mix-kpis" class="export-kpis"></div>
@@ -153,7 +160,7 @@
         </section>
 
         <section class="section" id="brand-analysis" aria-labelledby="brand-analysis-title">
-          <div class="section-head"><div><span class="eyebrow">06 / 品牌分析</span><h2 id="brand-analysis-title">品牌生态与定位</h2></div><span class="source-pill">82 个品牌分类表 × 罗盘 4—9 月榜单</span></div>
+          <div class="section-head"><div><span class="eyebrow">07 / 品牌分析</span><h2 id="brand-analysis-title">品牌生态与定位</h2></div><span class="source-pill">82 个品牌分类表 × 罗盘 4—9 月榜单</span></div>
           <div class="scope-banner"><span class="scope-icon">i</span><span>原表 82 个品牌：海外 17、老牌国货 9、新锐国货 18、白牌 38。核对品牌主体后暂归为海外 14、老牌国货 9、新锐国货 20、白牌待核 37、主体待核 2。品牌数量占比不是 GMV 份额；“白牌”尚未逐一核实商标和经营主体。</span></div>
           <div class="brand-matrix" id="brand-matrix"></div>
           <div class="two-col brand-analysis-panels">
@@ -170,7 +177,7 @@
         </section>
 
         <section class="section competitor-analysis" id="core-competitors" aria-labelledby="core-competitors-title">
-          <div class="section-head"><div><span class="eyebrow">07 / 竞品分析</span><h2 id="core-competitors-title">竞品分析</h2></div></div>
+          <div class="section-head"><div><span class="eyebrow">08 / 竞品分析</span><h2 id="core-competitors-title">竞品分析</h2></div></div>
           <section class="competitor-subsection" id="positioning" aria-labelledby="positioning-title">
           <div class="section-head"><div><span class="eyebrow">定位分析</span><h3 id="positioning-title">核心商品定位版图</h3></div><span class="source-pill">新竞品拆解表 · 植萃 / 科研生物</span></div>
           <div class="scope-banner"><span class="scope-icon">i</span><span>最新拆解表含 27 条资料行、23 个品牌，27 行均有商品链接。产品定位按你的规则分为“东方植萃”和“科研生物”：原微导肽、科学控油蓬松、科学控油防脱归入科研生物；原植萃表未填写定位的归入东方植萃。核心功效分组按表内词语提取，同一商品可出现在多个功效组。韩束红瓶与银瓶分开展示；直播间主讲卖点沿用此前补充的分类。条数不是市场份额。</span></div>
@@ -227,7 +234,7 @@
         </section>
 
         <section class="section korean-line-section" id="korean-lines" aria-labelledby="korean-lines-title">
-          <div class="section-head"><div><span class="eyebrow">08 / 韩国产品线</span><h2 id="korean-lines-title">韩国头皮与毛发护理产品线</h2></div><span class="source-pill">用户提供 PPT 与产品表</span></div>
+          <div class="section-head"><div><span class="eyebrow">09 / 韩国产品线</span><h2 id="korean-lines-title">韩国头皮与毛发护理产品线</h2></div><span class="source-pill">用户提供 PPT 与产品表</span></div>
           <div class="scope-banner"><span class="scope-icon">i</span><span>PPT 可逐页确认 <strong>14 个品牌案例</strong>，产品表覆盖其中 <strong>8 个品牌、24 条不重复记录</strong>。PPT 封面写“16 个品牌”，但正文只找到 14 个；产品表原有 25 行，其中 Dr.Groot 一条重复已合并。资料描述为研究参考，非中国市场销售额；技术、功效、认证及排名尚未独立核验。</span></div>
           <div class="korean-path-grid" aria-label="韩国产品线三种路径">
             <div><b>01</b><strong>头皮科学</strong><span>6 品牌 · 头皮屏障、专业分型、韩方与女性护理</span></div>
@@ -256,13 +263,13 @@
         </section>
 
         <section class="section" id="ranking" aria-labelledby="ranking-title">
-          <div class="section-head"><div><span class="eyebrow">08 / 竞品样本</span><h2 id="ranking-title">商品样本清单</h2></div><span class="source-pill">销量区间 · 非精确销量</span></div>
+          <div class="section-head"><div><span class="eyebrow">10 / 竞品样本</span><h2 id="ranking-title">商品样本清单</h2></div><span class="source-pill">销量区间 · 非精确销量</span></div>
           <div class="panel table-panel"><div class="filters"><label class="search-wrap"><span class="sr-only">搜索品牌或商品</span><input id="search" type="search" placeholder="搜索品牌、商品名称或关键词"></label><label><span class="sr-only">功效筛选</span><select id="tag-filter"><option value="">全部功效</option></select></label><label><span class="sr-only">销量区间筛选</span><select id="band-filter"><option value="">全部销量区间</option></select></label><label><span class="sr-only">商品形式筛选</span><select id="bundle-filter"><option value="">全部商品形式</option><option value="single">未标记套装</option><option value="bundle">可能为套装</option></select></label></div><div class="table-status"><span id="filtered-count">—</span><span>品牌按商品标题识别、待复核；同名商品未合并</span></div><div class="table-scroll"><table><thead><tr><th>原榜排名</th><th>商品标题</th><th>品牌（标题识别）</th><th>近 30 天销量</th><th>功效线索</th><th>关联达人</th><th>关联视频</th></tr></thead><tbody id="product-rows"></tbody></table></div><div class="table-footer"><button id="sample-prev" type="button">上一页</button><span id="shown-count" aria-live="polite"></span><button id="sample-next" type="button">下一页</button></div></div>
 
         </section>
 
         <section class="section" id="consumer-segments" aria-labelledby="consumer-segments-title">
-          <div class="section-head"><div><span class="eyebrow">09 / 消费人群&amp;需求分层</span><h2 id="consumer-segments-title">五类人群与需求分层</h2></div><span class="source-pill">形象化人群画像 · 产品示意</span></div>
+          <div class="section-head"><div><span class="eyebrow">11 / 消费人群&amp;需求分层</span><h2 id="consumer-segments-title">五类人群与需求分层</h2></div><span class="source-pill">形象化人群画像 · 产品示意</span></div>
           <div class="panel consumer-segments-panel">
             <p>按核心特征、需求、痛点与产品切入方向对照五类人群。图片中的人物与产品为示意，数字及星级依据所提供资料，来源和统计口径待核验。</p>
             <button type="button" class="consumer-segments-zoom" onclick="window.open(document.getElementById('consumer-segments-image').src, '_blank', 'noopener')">打开大图 ↗</button>
@@ -271,7 +278,7 @@
         </section>
 
         <section class="section" id="product-reviews" aria-labelledby="product-reviews-title">
-          <div class="section-head"><div><span class="eyebrow">10 / 商品评价分析</span><h2 id="product-reviews-title">商品评价与消费者反馈</h2></div><span class="source-pill">抖音竞品评价 · 小红书评论</span></div>
+          <div class="section-head"><div><span class="eyebrow">12 / 商品评价分析</span><h2 id="product-reviews-title">商品评价与消费者反馈</h2></div><span class="source-pill">抖音竞品评价 · 小红书评论</span></div>
           <div class="review-subsection" id="douyin-reviews">
             <div class="section-head"><div><span class="eyebrow">抖音 · 洗发水竞品</span><h3>核心商品评价阶段观察</h3></div><span class="source-pill">采集于 2026.10.12—13</span></div>
             <div class="scope-banner"><span class="scope-icon">i</span><span>这份阶段底稿覆盖当时看板的 15 个品牌、16 条商品链接，<strong>不等于目前定位版图中的全部 27 条商品</strong>。其中 14 条找到标题或评价总量吻合的直播商品，直播页未显示商品 ID，仍属暂定匹配。下表“中差评占比”＝页面中差评计数 ÷ 页面评价总数，包含中评，且评论正文未逐条收齐；它不是纯差评率，也不是商品质量排名。</span></div>
@@ -321,8 +328,9 @@
         </section>
 
         <section class="section" id="sources" aria-labelledby="sources-title">
-          <div class="section-head"><div><span class="eyebrow">11 / 数据口径</span><h2 id="sources-title">数据口径</h2></div></div>
+          <div class="section-head"><div><span class="eyebrow">13 / 数据口径</span><h2 id="sources-title">数据口径</h2></div></div>
           <div class="provenance"><h3>来源与限制</h3><ul>
+            <li><strong>全平台看板：</strong>用户提供的 4 张 2026H1 截图，分别为京东、淘天、抖音品牌 TOP20 与视频号类目表现。品牌榜的市场份额只适用于各自平台，截图没有跨平台品牌销售额；视频号没有品牌榜。淘天第 8 名品牌文字暂待核对，原始截图未随分享页公开。</li>
             <li><strong>年度生态：</strong>洗发水热度分析 PDF（原始文件未公开），2025.10.05–2026.10.05；另有洗发皂（原始文件未公开）、头皮护理精华（原始文件未公开）、护发素发膜（原始文件未公开）、护发精油（原始文件未公开）热度分析 PDF，均为 2025.10.08–2026.10.08。五份报告按各自关键词筛选前 2,000 商品，属于热度样本。</li>
             <li><strong>近一年带货趋势：</strong>飞瓜“洗发”热度导出 2025.10.01–2026.10.05，370 个连续自然日。367 天销售额封顶为“1000万+”，不可计算精确月 GMV；展示销售额下限、销量区间及每日活动数的逐月合计。</li>
             <li><strong>近一年带货商品：</strong>飞瓜“洗发”带货商品前 2,000 行，销售额及各渠道金额均为区间；功效词销售额下限仅依据榜内商品，标题排除儿童词。商品列表不是成人洗发水全量。</li>
@@ -342,6 +350,7 @@
     </main>
   </div>
   <script src="data.js?v=52a454cb"></script>
+  <script src="all_platform_app.js?v=240bbc39"></script>
   <script src="compass_category_data.js?v=8a6927f8"></script>
   <script src="annual_ecology_data.js?v=874e9ee3"></script>
   <script src="creator_mix_category_data.js?v=f1b10af4"></script>
