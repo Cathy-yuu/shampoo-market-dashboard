@@ -268,3 +268,30 @@
 @media(max-width:900px){.review-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.review-insight-grid,.review-gap-grid{grid-template-columns:1fr}.review-kpis strong{font-size:23px}}
 @media(max-width:600px){.review-pagination{gap:8px}.review-pagination button{padding:7px 10px}.review-pagination span{min-width:130px;font-size:12px}}
+
+/* Korean product-line reference: user-supplied presentation and workbook. */
+.korean-line-section{scroll-margin-top:20px}
+.korean-path-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+.korean-path-grid>div{display:grid;gap:7px;background:#fff;border:1px solid #dce7e7;border-top:3px solid #139b88;border-radius:10px;padding:17px;min-width:0}
+.korean-path-grid>div:nth-child(2){border-top-color:#5276b3}.korean-path-grid>div:nth-child(3){border-top-color:#b7865d}
+.korean-path-grid b{font-size:11px;color:#73909a;letter-spacing:.12em}.korean-path-grid strong{font-size:17px;color:#163848}.korean-path-grid span{font-size:12px;line-height:1.65;color:#5a7180}
+.korean-line-panel,.korean-line-detail,.korean-line-takeaway{margin-top:14px}
+.korean-line-search{font-size:12px;color:#56707b;display:grid;gap:5px;min-width:180px}
+.korean-line-search input{padding:9px 11px;border:1px solid #cfdfdf;border-radius:7px;background:#fff;color:#17394a}
+.korean-line-filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 10px}
+.korean-filter{border:1px solid #c6d9d8;border-radius:999px;background:#fff;color:#2d5260;padding:8px 13px;font-size:12px;font-weight:700;cursor:pointer}
+.korean-filter span{color:#82969d;margin-left:4px}.korean-filter.active{background:#0d8074;border-color:#0d8074;color:#fff}.korean-filter.active span{color:#d5f6ef}
+.korean-line-status{font-size:12px;color:#607987;margin:12px 0}
+.korean-line-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.korean-brand-card{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:7px;min-height:126px;padding:13px;border:1px solid #dbe8e6;border-radius:9px;background:#fafdfc;color:#143547;cursor:pointer}
+.korean-brand-card:hover,.korean-brand-card:focus-visible{border-color:#3ca895;box-shadow:0 4px 16px rgba(25,92,82,.08)}.korean-brand-card.active{border-color:#118b78;background:#ecf8f4}
+.korean-brand-card span{font-size:10px;color:#0c907c;font-weight:800}.korean-brand-card strong{font-size:15px}.korean-brand-card small{font-size:11px;color:#5e7781;line-height:1.4}.korean-brand-card em{font-style:normal;font-size:10px;color:#758b94;margin-top:auto}
+.korean-line-panel .table-footer{margin-top:14px}
+.korean-detail-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.korean-kicker{font-size:11px;letter-spacing:.04em;color:#0c947f;font-weight:800}.korean-detail-header h3{font-size:22px;margin:5px 0}.korean-detail-header p{margin:0;color:#55707b;font-size:13px}
+.korean-detail-summary{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}.korean-detail-summary>div{background:#f1f7f6;border-radius:8px;padding:13px}.korean-detail-summary small{font-size:11px;color:#558275;font-weight:800}.korean-detail-summary p{font-size:13px;color:#2d5260;line-height:1.65;margin:6px 0 0}
+.korean-line-image{margin:16px 0}.korean-line-image img{display:block;width:min(100%,850px);max-height:430px;object-fit:contain;object-position:left center;background:#fff;border:1px solid #e0eaea;border-radius:8px}.korean-line-image figcaption{font-size:11px;color:#7a8d95;margin-top:6px}
+.korean-line-table-wrap{overflow-x:auto}.korean-line-table{width:100%;border-collapse:collapse;min-width:600px}.korean-line-table th,.korean-line-table td{text-align:left;padding:11px 12px;border-bottom:1px solid #e2eaea;vertical-align:top;font-size:12px;line-height:1.55}.korean-line-table th{background:#f2f7f6;color:#456671;white-space:nowrap}.korean-line-table td:first-child{width:24%;color:#133b49}
+.korean-line-empty{padding:18px;background:#f7faf9;border-radius:8px;color:#6e848e;font-size:13px}.korean-source-note{font-size:11px;color:#7a8b94;line-height:1.6;margin:13px 0 0}
+.korean-line-takeaway>div{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.korean-line-takeaway p{background:#f6faf9;border-left:3px solid #74ae9d;border-radius:6px;padding:12px;margin:0;color:#4e6975;font-size:12px;line-height:1.7}
+@media(max-width:1000px){.korean-line-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.korean-path-grid,.korean-line-takeaway>div{grid-template-columns:1fr}.korean-line-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.korean-detail-summary{grid-template-columns:1fr}.korean-line-panel .panel-head{display:block}.korean-line-search{margin-top:12px}}

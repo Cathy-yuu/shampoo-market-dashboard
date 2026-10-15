@@ -1,6 +1,6 @@
-/* Mode labels follow the user-supplied 竞品营销拆解.docx and later user corrections; figures remain source estimates or bands. */
+/* Mode labels follow the user-supplied documents and later user corrections; figures remain source estimates or bands. */
 window.MARKETING_PLAY_DATA = {
-  source: '用户提供的《竞品营销拆解.docx》；逐日经营走势、商品定位及评价资料用于交叉观察',
+  source: '用户提供的《竞品营销拆解.docx》《营销分析（补充）.docx》；逐日经营走势、商品定位及评价资料用于交叉观察',
   groups: [
     {id:'hanShu', name:'央媒背书 + 自营矩阵 + 全渠道组合拳', color:'#7b5ba7', brief:'韩束：央媒大场、自营与 KOC 视频协同。'},
     {id:'selfKoc', name:'自营矩阵 + KOC短视频矩阵', color:'#0c9684', brief:'半亩花田、长发小寨、EHD：自营直播与 KOC 视频双轨。'},
@@ -11,7 +11,9 @@ window.MARKETING_PLAY_DATA = {
     {id:'gaotiya', name:'自营矩阵 + 腰尾达人直播', color:'#b58332', brief:'高缇雅：官号日播与腰尾部达人高频直播。'},
     {id:'miaozhentang', name:'白牌打法', color:'#b85d6c', brief:'苗甄堂：自营直播矩阵+全付费。'},
     {id:'gurantang', name:'明星背书 + 全渠道组合拳', color:'#8361a0', brief:'固然堂：代言、自营、达人与 KOC 链路。'},
-    {id:'gushishu', name:'明星背书 + 矩阵号自种草 + KOC', color:'#6a9b6e', brief:'故事树：代言、自种草和 KOC 视频。'},
+    {id:'gushishu', name:'自营矩阵 + KOC分销', color:'#6a9b6e', brief:'故事树：官方账号矩阵承接，洗头皂主链由 KOC 视频分销。'},
+    {id:'whiteSelf', name:'白牌打法，伪达人自营矩阵', color:'#9f7651', brief:'瑶品、小灵树：补充文档的模式标注；达人与店铺关系未独立核验。'},
+    {id:'channelMatrix', name:'渠道号矩阵', color:'#6a85a0', brief:'秀鹤颜：文档列 5 个渠道号、3 家专卖店，以长时直播铺货。'},
     {id:'expertKoc', name:'科研人设直播 + KOC', color:'#3d79aa', brief:'初葵、科芮实验室：科研人设直播与 KOC 海量分发。'},
     {id:'hexi', name:'明星背书 + 自营矩阵', color:'#a76678', brief:'赫系：明星背书与官方直播矩阵。'},
     {id:'aign', name:'自营矩阵+koc海量分销', color:'#7d8e56', brief:'爱兰歌娜：自营矩阵承接，KOC 视频和商品卡分销。'}
@@ -25,7 +27,10 @@ window.MARKETING_PLAY_DATA = {
     {name:'长发小寨', group:'selfKoc', quadrant:'selfVideo', engine:'自营日播＋KOC 视频／商品卡', trust:'非遗及媒体合作线索', evidence:'自营链 100w+；达人主链 906 达人、3364 条视频，视频与商品卡转化。', advantage:'自营成交与内容获客分链管理。', dependency:'背书说法和多条达人链需要逐项核实、归因。'},
     {name:'白云山', group:'baiyunshan', quadrant:'selfVideo', engine:'官方直播＋自有内容号＋KOC', trust:'药企品牌授权线索', evidence:'二硫化硒主链 1076 达人；文档列出多个品牌相关内容账号。', advantage:'品牌认知与短视频分发形成合力。', dependency:'需核实具体商品与授权主体，区分品牌账号与独立达人。'},
     {name:'EHD', group:'selfKoc', quadrant:'selfVideo', engine:'官方长时直播＋KOC 专用链', trust:'产品功效叙事', evidence:'短视频专属链 1388 达人、3154 条视频；官方直播间多次长时直播。', advantage:'视频链与直播链分工明确。', dependency:'KOC 铺量的边际效率和长时直播的人效需验证。'},
-    {name:'故事树', group:'gushishu', quadrant:'selfVideo', engine:'自营账号矩阵＋KOC 视频', trust:'代言及植萃叙事', evidence:'文档列 10 余个自营相关账号；洗头皂链 1279 达人、1369 条视频。', advantage:'账号矩阵覆盖多场景，内容分发能力强。', dependency:'品牌自有账号与外部达人须分开统计；洗头皂和洗发水口径不同。'},
+    {name:'故事树', group:'gushishu', quadrant:'selfVideo', engine:'官方账号矩阵＋KOC 视频分销', trust:'何首乌、侧柏叶、乌斯曼草及持证防脱叙事', evidence:'补充文档列洗头皂主链 1369 达人、4137 条视频、526 场直播；官方旗舰店 28 场直播，另有洗护发等专场。', advantage:'自营直播与低粉 KOC 分链覆盖；文档称洗头皂链 98% 达人低于 10 万粉。', dependency:'洗头皂与洗发水链接需分口径；持证防脱、账号归属和交易金额未独立核验。'},
+    {name:'瑶品', group:'whiteSelf', quadrant:'selfLive', engine:'官方店铺多链接＋直播铺货', trust:'明星背书与淘米草本原浆叙事（文档记录）', evidence:'补充文档列淘米草本原浆主链 100w+、防脱洗发水链 50w—100w；后者关联 526 达人、2854 场直播，均指向官方旗舰店。', advantage:'多链接集中在官方店铺承接。', dependency:'“伪达人”系文档定性；账号关系、单场产出及投放成本待核。'},
+    {name:'小灵树', group:'whiteSelf', quadrant:'selfLive', engine:'双主链＋直播铺货', trust:'补充文档未列独立背书', evidence:'补充文档列两条 100w+ 主链，分别在个人护理旗舰店和沐骅专卖店；每链仅 2 个达人、0 条视频，直播为主要出货方式。', advantage:'两条主链均有直播出货线索。', dependency:'“伪达人”系文档定性；达人与店铺关系、利润和自然流量待核。'},
+    {name:'秀鹤颜', group:'channelMatrix', quadrant:'selfLive', engine:'5 个渠道号×3 家专卖店长时直播', trust:'防脱固发场景表达', evidence:'补充文档列三条 100w+ 主链；防脱固发专场账号 20 场直播，常于 05:00 开播、单场 14—18 小时；未列 KOC。', advantage:'多渠道号与店铺延长直播覆盖时段。', dependency:'文档定性为白牌分销；渠道号归属、流量重叠和盈利性待核。'},
     {name:'初葵', group:'expertKoc', quadrant:'selfVideo', engine:'科研人设直播＋KOC', trust:'博士人设', evidence:'4 个自营相关账号；主链直播 100w+；2374 条 KOC 视频。', advantage:'专业形象与自营话术一致。', dependency:'人物资质、功效证据及商品关联需逐项核验。'},
     {name:'科芮实验室', group:'expertKoc', quadrant:'selfVideo', engine:'博士常驻主播＋KOC', trust:'科研人设', evidence:'官方直播间长时日播，文档所列单场 100w+；1896 条视频。', advantage:'直播间持续传达专业主张。', dependency:'人设主张和二硫化硒功效表述需要证据支撑。'},
     {name:'诗裴丝', group:'brand', quadrant:'creatorLive', engine:'头部专场＋腰部日播＋KOC', trust:'主播和产品内容', evidence:'与辉同行在三个链接合计 28 场直播；蓝胖子链 287 达人、1530 条视频。', advantage:'头部、腰部与 KOC 分层覆盖。', dependency:'头部专场集中度高，常态化成交需单独观察。'},

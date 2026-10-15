@@ -19,7 +19,7 @@
   let tablePage = 0;
 
   const quarters = [
-    {id:'selfLive', label:'自营直播为主要成交', sub:'配合专场、代言或付费流量'},
+    {id:'selfLive', label:'自营或渠道号直播为主要成交', sub:'官号、渠道号与店播承接'},
     {id:'creatorLive', label:'外部达人直播为主要成交', sub:'专场与达人分销'},
     {id:'selfVideo', label:'自营直播成交，内容视频放大触达', sub:'短视频、KOC 与自有账号'},
     {id:'creatorVideo', label:'外部分销视频为主要出货', sub:'KOC 视频与商品卡'}
