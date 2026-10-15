@@ -197,7 +197,10 @@
   [['overseas-spotlight',brandAnalysis.overseasProducts],['domestic-spotlight',brandAnalysis.domesticProducts]].forEach(([id,products])=>{
     $(id).innerHTML = products.map((product,i) => {
       const row = analysisEntries.find(item => item.name === product.name);
-      return `<div title="${esc(product.title)} · ${esc(product.unitBand || product.source)}"><b>${String(i+1).padStart(2,'0')}</b><strong>${esc(row?.displayName || product.name)}</strong><small>${esc(product.shortTitle)}${product.unitBand ? ` · ${esc(product.unitBand)}` : ' · 罗盘榜'}</small></div>`;
+      const ingredient = window.BRAND_INGREDIENTS_DATA?.brands.find(item => item.brand === product.name || item.brand.startsWith(product.name + ' '));
+      const tag = ingredient ? 'button' : 'div';
+      const action = ingredient ? ` type="button" class="spotlight-ingredient-link" data-ingredient-brand="${esc(ingredient.brand)}" aria-label="查看${esc(ingredient.brand)}的成分详情"` : '';
+      return `<${tag}${action} title="${esc(product.title)} · ${esc(product.unitBand || product.source)}"><b>${String(i+1).padStart(2,'0')}</b><strong>${esc(row?.displayName || product.name)}</strong><small>${esc(product.shortTitle)}${product.unitBand ? ` · ${esc(product.unitBand)}` : ' · 罗盘榜'}</small></${tag}>`;
     }).join('');
   });
   $('domestic-tiers').innerHTML = Object.entries(brandAnalysis.whiteTiers).map(([tier,names]) =>
