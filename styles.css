@@ -311,3 +311,10 @@
   .sidebar nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:6px;width:100%;max-height:none;overflow:visible;margin:14px 0 0}
   .sidebar nav a{display:flex;align-items:center;justify-content:center;min-height:37px;padding:7px 8px;text-align:center;font-size:12px;white-space:nowrap}
 }
+
+.consumer-segments-panel{padding:16px;position:relative}
+.consumer-segments-panel p{margin:0 130px 14px 2px;color:var(--muted);font-size:14px;line-height:1.6}
+.consumer-segments-panel img{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:9px;background:var(--bg)}
+.consumer-segments-zoom{position:absolute;right:18px;top:16px;border:1px solid #a8d8ca;border-radius:7px;background:#eef9f5;color:#087965;padding:8px 12px;font-size:13px;font-weight:700}
+.consumer-segments-zoom:hover,.consumer-segments-zoom:focus-visible{background:#dcf2eb}
+@media(max-width:700px){.consumer-segments-panel{padding:11px}.consumer-segments-panel p{margin:0 0 12px}.consumer-segments-zoom{position:static;display:block;margin-bottom:12px}}
