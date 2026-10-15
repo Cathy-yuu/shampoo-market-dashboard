@@ -304,3 +304,10 @@
 .brand-ingredient-shared{background:#fff8ed;border-left:3px solid #ce9357;border-radius:6px;padding:11px 13px;color:#775c41;font-size:12px;line-height:1.6}
 .brand-ingredient-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.brand-ingredient-fact{background:#f8fbfa;border:1px solid #e2ebea;border-radius:8px;padding:13px 15px;min-width:0}.brand-ingredient-fact strong{font-size:12px;color:#0c8173}.brand-ingredient-fact p{font-size:13px;line-height:1.68;color:#304e5a;margin:6px 0 0;overflow-wrap:anywhere}.brand-ingredient-source{border-top:1px solid #e7efee;padding-top:11px;margin:17px 0 0;color:#71858d;font-size:11px}
 @media(max-width:700px){.brand-ingredient-panel .panel-head{display:block}.brand-ingredient-picker{margin-top:12px}.brand-ingredient-facts{grid-template-columns:1fr}.brand-ingredient-title{align-items:flex-start;flex-direction:column}}
+
+/* Keep every workspace destination visible when the sidebar moves above the page. */
+@media(max-width:850px){
+  .sidebar{display:block;height:auto}
+  .sidebar nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:6px;width:100%;max-height:none;overflow:visible;margin:14px 0 0}
+  .sidebar nav a{display:flex;align-items:center;justify-content:center;min-height:37px;padding:7px 8px;text-align:center;font-size:12px;white-space:nowrap}
+}
